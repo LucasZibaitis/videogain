@@ -1,13 +1,12 @@
 const { DataTypes } = require("sequelize");
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize) => {
   sequelize.define(
     "videogame",
     {
       id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
+        type: DataTypes.UUID,
         primaryKey: true,
       },
       name: {

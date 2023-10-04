@@ -1,4 +1,5 @@
 const { Genre, Videogame } = require("../db");
+const { v4: uuidv4 } = require("uuid");
 
 const postVideogame = async (req, res) => {
   const { name, description, platforms, image, releaseDate, rating, genres } =
@@ -14,7 +15,9 @@ const postVideogame = async (req, res) => {
     ) {
       return res.status(401).send("Faltan datos");
     }
+    const uniqueId = uuidv4();
     const newVideogame = await Videogame.create({
+      id: uniqueId,
       name: name,
       description: description,
       platforms: platforms,
