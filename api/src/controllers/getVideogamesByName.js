@@ -10,13 +10,22 @@ const getVideogamesByName = async (req, res) => {
     const name = req.query.name;
     const apiResponse = await axios.get(`${URL}${name}&key=${API_KEY}`);
 
-    const apiGames = apiResponse.data.results;
+    const dbResponse = Videogame.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+      limit: 15,
+    });
 
-    const filteredGames = apiGames
-      .filter((game) => game.name.toLowerCase().includes(name.toLowerCase()))
-      .slice(0, 15);
+    const [apiGames, dbGames] = await Promise.all([apiResponse, dbResponse]);
 
-    return res.status(200).json(filteredGames);
+    const combinedGames = [...dbGames, ...apiGames.data.results];
+
+    const resultGames = combinedGames.slice(0, 15);
+
+    return res.status(200).json(resultGames);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
