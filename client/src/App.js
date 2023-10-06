@@ -8,6 +8,7 @@ import axios from "axios";
 
 function App() {
   const [videogames, setVideogames] = React.useState([]);
+  const [initialLoad, setInitialLoad] = React.useState(true);
 
   const onSearch = async (name) => {
     try {
@@ -15,6 +16,7 @@ function App() {
         `http://localhost:3001/videogames/name?name=${name}`
       );
       setVideogames(data);
+      setInitialLoad(false);
     } catch (error) {
       window.alert("No hay videojuegos con este nombre");
     }
@@ -24,10 +26,19 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname !== "/" ? <Nav onSearch={onSearch} /> : null}
+      {location.pathname !== "/" ? <Nav /> : null}
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<Cards />} />
+        <Route
+          path="/home"
+          element={
+            <Cards
+              videogames={videogames}
+              onSearch={onSearch}
+              initialLoad={initialLoad}
+            />
+          }
+        />
       </Routes>
     </div>
   );
