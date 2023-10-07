@@ -3,13 +3,13 @@ import Card from "../Card/Card";
 import Searchbar from "../Searchbar/Searchbar";
 
 export default function Cards(props) {
-  const { onSearch, videogames, initialLoad } = props;
+  const { onSearchAll, videogames, initialLoad, onSearchByName } = props;
 
   useEffect(() => {
     if (initialLoad) {
-      onSearch("");
+      onSearchAll();
     }
-  }, [initialLoad, onSearch]);
+  }, [initialLoad, onSearchAll]);
 
   const videogamesList = videogames.map((videogame) => (
     <Card
@@ -22,9 +22,10 @@ export default function Cards(props) {
       }
     />
   ));
+
   return (
     <div>
-      <Searchbar onSearch={props.onSearch} />
+      <Searchbar onSearchByName={onSearchByName} />
       <div>{videogamesList}</div>
     </div>
   );

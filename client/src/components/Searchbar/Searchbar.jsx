@@ -8,7 +8,7 @@ export default function Searchbar(props) {
   };
 
   const handleSearch = () => {
-    props.onSearch(name);
+    props.onSearchByName(name);
   };
 
   return (

@@ -3,6 +3,7 @@ import React from "react";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Nav from "./components/Nav/Nav";
 import Cards from "./components/Cards/Cards";
+import Detail from "./components/Detail/Detail";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -10,7 +11,7 @@ function App() {
   const [videogames, setVideogames] = React.useState([]);
   const [initialLoad, setInitialLoad] = React.useState(true);
 
-  const onSearch = async (name) => {
+  const onSearchByName = async (name) => {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/videogames/name?name=${name}`
@@ -19,6 +20,16 @@ function App() {
       setInitialLoad(false);
     } catch (error) {
       window.alert("No hay videojuegos con este nombre");
+    }
+  };
+
+  const onSearchAll = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:3001/videogames`);
+      setVideogames(data);
+      setInitialLoad(false);
+    } catch (error) {
+      window.alert("No hay videojuegos");
     }
   };
 
@@ -34,11 +45,13 @@ function App() {
           element={
             <Cards
               videogames={videogames}
-              onSearch={onSearch}
+              onSearchAll={onSearchAll}
+              onSearchByName={onSearchByName}
               initialLoad={initialLoad}
             />
           }
         />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>
   );
