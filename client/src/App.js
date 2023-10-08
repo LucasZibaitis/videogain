@@ -4,6 +4,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Nav from "./components/Nav/Nav";
 import Cards from "./components/Cards/Cards";
 import Detail from "./components/Detail/Detail";
+import Form from "./components/Form/Form";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -51,6 +52,7 @@ function App() {
             />
           }
         />
+        <Route path="/form" element={<Form />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>

@@ -8,9 +8,8 @@ export default function Nav(props) {
         <button>Home</button>
       </Link>
       <Link to="/form">
-        <button>Form Page</button>
+        <button>Create Videogame</button>
       </Link>
-
       <Link to="/">
         <button>Log Out</button>
       </Link>
