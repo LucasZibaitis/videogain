@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Form(props) {
-  const { genres } = props;
+  const { genres, platforms } = props;
 
   const [formData, setFormData] = useState({
     name: "",
     image: "",
     description: "",
-    platforms: [],
     releaseDate: "",
     rating: "",
   });
-
   const [selectedGenres, setSelectedGenres] = useState([]);
+  const [selectedPlatforms, setSelectedPlatforms] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,24 +26,25 @@ export default function Form(props) {
         name: formData.name,
         image: formData.image,
         description: formData.description,
-        platforms: formData.platforms,
+        platforms: selectedPlatforms,
         releaseDate: formData.releaseDate,
         rating: formData.rating,
         genres: selectedGenres,
       });
 
-      console.log("Videojuego creado:", response.data);
+      window.alert(
+        `The videogame: "${response.data.name}" has been created successfully`
+      );
 
       setFormData({
         name: "",
         image: "",
         description: "",
-        platforms: "",
         releaseDate: "",
         rating: "",
-        genres: [],
       });
       setSelectedGenres([]);
+      setSelectedPlatforms([]);
     } catch (error) {
       console.error("Error al crear el videojuego:", error);
     }
@@ -61,9 +61,16 @@ export default function Form(props) {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(selectedGenres);
-  // }, [selectedGenres]);
+  const handleChangePlatform = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setSelectedPlatforms((prevPlatforms) => [...prevPlatforms, value]);
+    } else {
+      setSelectedPlatforms((prevPlatforms) =>
+        prevPlatforms.filter((platform) => platform !== value)
+      );
+    }
+  };
 
   const selectGenres = genres.map((genre) => (
     <React.Fragment key={genre.id}>
@@ -75,6 +82,19 @@ export default function Form(props) {
         onChange={handleChangeGenre}
       />
       <label htmlFor={genre.name}>{genre.name}</label>
+    </React.Fragment>
+  ));
+
+  const selectPlatforms = platforms.map((platform) => (
+    <React.Fragment key={platform}>
+      <input
+        type="checkbox"
+        id={platform}
+        name="platform"
+        value={platform}
+        onChange={handleChangePlatform}
+      />
+      <label htmlFor={platform}>{platform}</label>
     </React.Fragment>
   ));
 
@@ -110,12 +130,7 @@ export default function Form(props) {
         </div>
         <div>
           <label>Platforms:</label>
-          <input
-            type="text"
-            name="platforms"
-            value={formData.platforms}
-            onChange={handleChange}
-          ></input>
+          <div>{selectPlatforms}</div>
         </div>
         <div>
           <label>Release Date:</label>

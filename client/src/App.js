@@ -12,6 +12,7 @@ function App() {
   const [videogames, setVideogames] = React.useState([]);
   const [initialLoad, setInitialLoad] = React.useState(true);
   const [genres, setGenres] = React.useState([]);
+  const [platforms, setPlatforms] = React.useState([]);
 
   const onSearchByName = async (name) => {
     try {
@@ -52,6 +53,20 @@ function App() {
   }, []);
 
   React.useEffect(() => {
+    async function fetchPlatforms() {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/videogames/platforms"
+        );
+        setPlatforms(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchPlatforms();
+  }, []);
+
+  React.useEffect(() => {
     if (initialLoad) {
       onSearchAll();
     }
@@ -73,7 +88,10 @@ function App() {
             />
           }
         />
-        <Route path="/form" element={<Form genres={genres} />} />
+        <Route
+          path="/form"
+          element={<Form genres={genres} platforms={platforms} />}
+        />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>

@@ -1,4 +1,4 @@
-const { Genre, Videogame } = require("../db");
+const { Videogame } = require("../db");
 const { v4: uuidv4 } = require("uuid");
 
 const postVideogame = async (req, res) => {
@@ -29,6 +29,8 @@ const postVideogame = async (req, res) => {
     if (genres && genres.length > 0) {
       await newVideogame.setGenres(genres);
     }
+    const genresDBB = await newVideogame.getGenres();
+    console.log("Géneros asociados:", genresDBB);
     return res.status(200).send(newVideogame);
   } catch (error) {
     return res.status(500).json({ error: error.message });
