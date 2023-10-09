@@ -5,12 +5,13 @@ import Nav from "./components/Nav/Nav";
 import Cards from "./components/Cards/Cards";
 import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
 function App() {
   const [videogames, setVideogames] = React.useState([]);
   const [initialLoad, setInitialLoad] = React.useState(true);
+  const [genres, setGenres] = React.useState([]);
 
   const onSearchByName = async (name) => {
     try {
@@ -36,6 +37,26 @@ function App() {
 
   const location = useLocation();
 
+  React.useEffect(() => {
+    async function fetchGenres() {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/videogames/genres"
+        );
+        setGenres(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchGenres();
+  }, []);
+
+  React.useEffect(() => {
+    if (initialLoad) {
+      onSearchAll();
+    }
+  }, [initialLoad, onSearchAll]);
+
   return (
     <div className="App">
       {location.pathname !== "/" ? <Nav /> : null}
@@ -52,7 +73,7 @@ function App() {
             />
           }
         />
-        <Route path="/form" element={<Form />} />
+        <Route path="/form" element={<Form genres={genres} />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>

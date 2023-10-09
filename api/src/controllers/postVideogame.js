@@ -11,7 +11,8 @@ const postVideogame = async (req, res) => {
       !platforms ||
       !image ||
       !releaseDate ||
-      !rating
+      !rating ||
+      !genres
     ) {
       return res.status(401).send("Faltan datos");
     }
