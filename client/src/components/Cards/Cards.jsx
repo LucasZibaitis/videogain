@@ -11,9 +11,7 @@ export default function Cards(props) {
       id={videogame.id}
       name={videogame.name}
       image={videogame.background_image}
-      genres={
-        videogame.genres.length > 0 ? videogame.genres[0].name : "Genreless"
-      }
+      genres={videogame.genres}
     />
   ));
 

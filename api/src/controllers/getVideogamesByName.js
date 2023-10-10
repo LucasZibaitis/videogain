@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Op } = require("sequelize");
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 require("dotenv").config();
 const { API_KEY } = process.env;
 const URL = `https://api.rawg.io/api/games?search=`;
@@ -16,7 +16,7 @@ const getVideogamesByName = async (req, res) => {
           [Op.iLike]: `%${name}%`,
         },
       },
-      limit: 15,
+      include: Genre,
     });
 
     const [apiGames, dbGames] = await Promise.all([apiResponse, dbResponse]);

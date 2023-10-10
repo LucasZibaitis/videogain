@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 export default function Form(props) {
@@ -24,7 +24,7 @@ export default function Form(props) {
     try {
       const response = await axios.post("http://localhost:3001/videogames", {
         name: formData.name,
-        image: formData.image,
+        background_image: formData.image,
         description: formData.description,
         platforms: selectedPlatforms,
         releaseDate: formData.releaseDate,
@@ -43,8 +43,8 @@ export default function Form(props) {
         releaseDate: "",
         rating: "",
       });
-      setSelectedGenres([]);
-      setSelectedPlatforms([]);
+      // setSelectedGenres([]);
+      // setSelectedPlatforms([]);
     } catch (error) {
       console.error("Error al crear el videojuego:", error);
     }
@@ -54,6 +54,7 @@ export default function Form(props) {
     const { value, checked } = e.target;
     if (checked) {
       setSelectedGenres((prevGenres) => [...prevGenres, value]);
+      console.log(selectedGenres);
     } else {
       setSelectedGenres((prevGenres) =>
         prevGenres.filter((genre) => genre !== value)
@@ -71,6 +72,11 @@ export default function Form(props) {
       );
     }
   };
+
+  React.useEffect(() => {
+    console.log("Generos: ", typeof selectedGenres[0]);
+    console.log("Platforms: ", selectedPlatforms);
+  }, [selectedGenres, selectedPlatforms]);
 
   const selectGenres = genres.map((genre) => (
     <React.Fragment key={genre.id}>
