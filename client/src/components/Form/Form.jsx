@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function Form(props) {
-  const { genres, platforms } = props;
+  // const { genres, platforms } = props;
+  const genres = useSelector((state) => state.allGenres);
+  const platforms = useSelector((state) => state.allPlatforms);
 
   const [formData, setFormData] = useState({
     name: "",
