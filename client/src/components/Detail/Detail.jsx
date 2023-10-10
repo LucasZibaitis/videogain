@@ -61,14 +61,12 @@ export default function Detail() {
   function renderPlatforms() {
     return (
       <ul>
-        {videogame.platforms.map((platform, index) => (
-          <li key={index}>{platform.name}</li>
+        {videogame.platforms.map((platform) => (
+          <li>{platform.platform.name}</li>
         ))}
       </ul>
     );
   }
-
-  console.log(videogame.platforms);
 
   return (
     <div>
@@ -81,6 +79,7 @@ export default function Detail() {
           <h3>Released: {videogame.released}</h3>
           <h3>Rating: {videogame.rating}</h3>
           <h3>Genres: {renderGenres()}</h3>
+          <h3>Platforms: {renderPlatforms()}</h3>
         </div>
       ) : (
         <p>Loading videogame...</p>

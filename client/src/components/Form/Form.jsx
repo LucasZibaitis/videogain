@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Form(props) {
@@ -62,19 +62,20 @@ export default function Form(props) {
 
   const handleChangePlatform = (e) => {
     const { value, checked } = e.target;
+
     if (checked) {
-      setSelectedPlatforms((prevPlatforms) => [...prevPlatforms, value]);
+      setSelectedPlatforms((prevPlatforms) => [
+        ...prevPlatforms,
+        { platform: { name: value } },
+      ]);
     } else {
       setSelectedPlatforms((prevPlatforms) =>
-        prevPlatforms.filter((platform) => platform !== value)
+        prevPlatforms.filter(
+          (platformObj) => platformObj.platform.name !== value
+        )
       );
     }
   };
-
-  React.useEffect(() => {
-    console.log("Generos: ", typeof selectedGenres[0]);
-    console.log("Platforms: ", selectedPlatforms);
-  }, [selectedGenres, selectedPlatforms]);
 
   const selectGenres = genres.map((genre) => (
     <React.Fragment key={genre.id}>
