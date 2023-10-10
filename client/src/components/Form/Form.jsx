@@ -8,7 +8,7 @@ export default function Form(props) {
     name: "",
     image: "",
     description: "",
-    releaseDate: "",
+    released: "",
     rating: "",
   });
   const [selectedGenres, setSelectedGenres] = useState([]);
@@ -27,7 +27,7 @@ export default function Form(props) {
         background_image: formData.image,
         description: formData.description,
         platforms: selectedPlatforms,
-        releaseDate: formData.releaseDate,
+        released: formData.released,
         rating: formData.rating,
         genres: selectedGenres,
       });
@@ -40,11 +40,9 @@ export default function Form(props) {
         name: "",
         image: "",
         description: "",
-        releaseDate: "",
+        released: "",
         rating: "",
       });
-      // setSelectedGenres([]);
-      // setSelectedPlatforms([]);
     } catch (error) {
       console.error("Error al crear el videojuego:", error);
     }
@@ -142,8 +140,8 @@ export default function Form(props) {
           <label>Release Date:</label>
           <input
             type="date"
-            name="releaseDate"
-            value={formData.releaseDate}
+            name="released"
+            value={formData.released}
             onChange={handleChange}
           />
         </div>

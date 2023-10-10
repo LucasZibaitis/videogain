@@ -5,7 +5,15 @@ import axios from "axios";
 
 export default function Detail() {
   const { id } = useParams();
-  const [videogame, setVideogame] = useState({});
+  const [videogame, setVideogame] = useState({
+    name: "",
+    description: "",
+    background_image: "",
+    released: "",
+    rating: "",
+    genres: [],
+    platforms: [],
+  });
 
   useEffect(() => {
     async function fetchVideogame() {
@@ -14,13 +22,54 @@ export default function Detail() {
           `http://localhost:3001/videogames/videogame/${id}`
         );
         const data = response.data;
-        setVideogame(data);
+        const {
+          name,
+          description,
+          background_image,
+          released,
+          rating,
+          genres,
+          platforms,
+        } = data;
+
+        setVideogame({
+          name,
+          description,
+          background_image,
+          released,
+          rating,
+          genres,
+          platforms,
+        });
       } catch (error) {
         window.alert("No hay personajes con este ID");
       }
     }
     fetchVideogame();
   }, [id]);
+
+  function renderGenres() {
+    return (
+      <ul>
+        {videogame.genres.map((genre, index) => (
+          <li key={index}>{genre.name}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  function renderPlatforms() {
+    return (
+      <ul>
+        {videogame.platforms.map((platform, index) => (
+          <li key={index}>{platform.name}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  console.log(videogame.platforms);
+
   return (
     <div>
       {videogame ? (
@@ -30,28 +79,8 @@ export default function Detail() {
           <h3>{videogame.description}</h3>
           <img src={videogame.background_image} alt="" height={500} />
           <h3>Released: {videogame.released}</h3>
-          <h3>{videogame.rating}</h3>
-          <ul>
-            {videogame.genres ? (
-              videogame.genres.length > 0 ? (
-                <h3>Genre: {videogame.genres[0].name}</h3>
-              ) : (
-                <li>No genres available</li>
-              )
-            ) : (
-              <li>Loading genres...</li>
-            )}
-          </ul>
-
-          <ul>
-            {videogame.platforms ? (
-              videogame.platforms.map((platform) => (
-                <li key={platform.platform.id}>{platform.platform.name}</li>
-              ))
-            ) : (
-              <li>Loading platforms...</li>
-            )}
-          </ul>
+          <h3>Rating: {videogame.rating}</h3>
+          <h3>Genres: {renderGenres()}</h3>
         </div>
       ) : (
         <p>Loading videogame...</p>

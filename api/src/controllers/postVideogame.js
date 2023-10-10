@@ -7,7 +7,7 @@ const postVideogame = async (req, res) => {
     description,
     platforms,
     background_image,
-    releaseDate,
+    released,
     rating,
     genres,
   } = req.body;
@@ -17,7 +17,7 @@ const postVideogame = async (req, res) => {
       !description ||
       !platforms ||
       !background_image ||
-      !releaseDate ||
+      !released ||
       !rating ||
       !genres
     ) {
@@ -31,7 +31,7 @@ const postVideogame = async (req, res) => {
       description: description,
       platforms: platforms,
       background_image: background_image,
-      releaseDate: releaseDate,
+      released: released,
       rating: rating,
     });
     if (genres && genres.length > 0) {

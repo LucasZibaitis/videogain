@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       description: { type: DataTypes.TEXT, allowNull: false },
       platforms: { type: DataTypes.ARRAY(DataTypes.STRING), allowNull: false },
       background_image: { type: DataTypes.STRING, allowNull: false },
-      releaseDate: { type: DataTypes.DATE, allowNull: false },
+      released: { type: DataTypes.DATE, allowNull: false },
       rating: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
