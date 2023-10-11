@@ -11,6 +11,7 @@ import {
 
 const initialState = {
   allVideogames: [],
+  filteredVideogames: [],
   allGenres: [],
   allPlatforms: [],
 };
@@ -37,15 +38,47 @@ const rootReducer = (state = initialState, action) => {
         allPlatforms: action.payload,
       };
     case ORDER_BY_NAME:
-      let orderedVideogames = [...state.allVideogames];
+      if (action.payload === "none") {
+        return { ...state };
+      }
+      let orderedVideogamesByName = [...state.allVideogames];
       if (action.payload === "A") {
-        orderedVideogames.sort((a, b) => a.name - b.name);
+        orderedVideogamesByName.sort((a, b) => a.name.localeCompare(b.name));
       }
       if (action.payload === "Z") {
-        orderedVideogames.sort((a, b) => b.name - a.name);
+        orderedVideogamesByName.sort((a, b) => b.name.localeCompare(a.name));
       }
       return {
-        allVideogames: orderedVideogames,
+        ...state,
+        allVideogames: orderedVideogamesByName,
+      };
+    case ORDER_BY_RATING:
+      if (action.payload === "none") {
+        return { ...state };
+      }
+      let orderedVideogamesByRating = [...state.allVideogames];
+      if (action.payload === "A") {
+        orderedVideogamesByRating.sort((a, b) => a.rating - b.rating);
+      }
+      if (action.payload === "D") {
+        orderedVideogamesByRating.sort((a, b) => b.rating - a.rating);
+      }
+      return {
+        ...state,
+        allVideogames: orderedVideogamesByRating,
+      };
+    case FILTER_BY_GENRE:
+      if (action.payload === "all") {
+        return { ...state };
+      }
+      const filteredVideogamesByGenre = state.allVideogames.filter(
+        (videogame) =>
+          videogame.genres.length > 0 &&
+          videogame.genres[0].name === action.payload
+      );
+      return {
+        ...state,
+        filteredVideogames: filteredVideogamesByGenre,
       };
     default:
       return state;

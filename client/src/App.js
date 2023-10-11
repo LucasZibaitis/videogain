@@ -9,6 +9,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import {
+  orderCardsByName,
   setAllGenres,
   setAllPlatforms,
   setAllVideogames,
@@ -57,14 +58,22 @@ function App() {
       fetchGenres();
       fetchPlatforms();
     }
-  }, [initialLoad, fetchVideogames, fetchGenres, fetchPlatforms]);
+  }, [initialLoad]);
 
   return (
     <div className="App">
       {location.pathname !== "/" ? <Nav /> : null}
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<Cards initialLoad={initialLoad} />} />
+        <Route
+          path="/home"
+          element={
+            <Cards
+              initialLoad={initialLoad}
+              fetchVideogames={fetchVideogames}
+            />
+          }
+        />
         <Route path="/form" element={<Form />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
