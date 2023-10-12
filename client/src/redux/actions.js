@@ -50,5 +50,5 @@ export const filterCardsByGenre = (genre) => {
 };
 
 export const filterCardsBySource = (source) => {
-  return { type: FILTER_BY_GENRE, payload: source };
+  return { type: FILTER_BY_SOURCE, payload: source };
 };

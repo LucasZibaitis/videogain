@@ -3,7 +3,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export default function Form(props) {
-  // const { genres, platforms } = props;
   const genres = useSelector((state) => state.allGenres);
   const platforms = useSelector((state) => state.allPlatforms);
 
@@ -55,7 +54,6 @@ export default function Form(props) {
     const { value, checked } = e.target;
     if (checked) {
       setSelectedGenres((prevGenres) => [...prevGenres, value]);
-      console.log(selectedGenres);
     } else {
       setSelectedGenres((prevGenres) =>
         prevGenres.filter((genre) => genre !== value)

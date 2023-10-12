@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Detail() {
   const { id } = useParams();
   const [videogame, setVideogame] = useState({
+    id: id,
     name: "",
     description: "",
     background_image: "",
@@ -33,6 +34,7 @@ export default function Detail() {
         } = data;
 
         setVideogame({
+          id,
           name,
           description,
           background_image,
@@ -72,7 +74,7 @@ export default function Detail() {
     <div>
       {videogame ? (
         <div>
-          <h1>{videogame.id}</h1>
+          <h1>ID: {videogame.id}</h1>
           <h1>{videogame.name}</h1>
           <h3>{videogame.description}</h3>
           <img src={videogame.background_image} alt="" height={500} />

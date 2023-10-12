@@ -7,27 +7,23 @@ import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
 import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  orderCardsByName,
   setAllGenres,
   setAllPlatforms,
   setAllVideogames,
 } from "./redux/actions";
 
 function App() {
-  const [initialLoad, setInitialLoad] = React.useState(true);
   const location = useLocation();
   const dispatch = useDispatch();
+  const filteredVideogames = useSelector((state) => state.filteredVideogames);
 
   const fetchVideogames = async () => {
     try {
       const { data } = await axios.get(`http://localhost:3001/videogames`);
       dispatch(setAllVideogames(data));
-      setInitialLoad(false);
-    } catch (error) {
-      window.alert("No hay videojuegos");
-    }
+    } catch (error) {}
   };
 
   const fetchGenres = async () => {
@@ -53,12 +49,10 @@ function App() {
   };
 
   React.useEffect(() => {
-    if (initialLoad) {
-      fetchVideogames();
-      fetchGenres();
-      fetchPlatforms();
-    }
-  }, [initialLoad]);
+    fetchVideogames();
+    fetchGenres();
+    fetchPlatforms();
+  }, []);
 
   return (
     <div className="App">
@@ -67,12 +61,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route
           path="/home"
-          element={
-            <Cards
-              initialLoad={initialLoad}
-              fetchVideogames={fetchVideogames}
-            />
-          }
+          element={<Cards fetchVideogames={fetchVideogames} />}
         />
         <Route path="/form" element={<Form />} />
         <Route path="/detail/:id" element={<Detail />} />

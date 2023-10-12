@@ -11,15 +11,21 @@ import {
 
 export default function Cards(props) {
   const dispatch = useDispatch();
-  const allVideogames = useSelector((state) => state.allVideogames);
+  const filteredVideogames = useSelector((state) => state.filteredVideogames);
   const allGenres = useSelector((state) => state.allGenres);
   const [name, setName] = React.useState("");
-  const { fetchVideogames } = props;
+  const { fetchVideogames, initialLoad } = props;
   const [nameOrder, setNameOrder] = React.useState("none");
   const [ratingOrder, setRatingOrder] = React.useState("none");
   const [genreFilter, setGenreFilter] = React.useState("all");
+  const [sourceFilter, setSourceFilter] = React.useState("all");
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const cardsPerPage = 15;
+  const startIndex = (currentPage - 1) * cardsPerPage;
+  const endIndex = currentPage * cardsPerPage;
+  const visibleVideogames = filteredVideogames.slice(startIndex, endIndex);
 
-  const videogamesList = allVideogames.map((videogame) => (
+  const videogamesList = visibleVideogames.map((videogame) => (
     <Card
       key={videogame.id}
       id={videogame.id}
@@ -28,6 +34,19 @@ export default function Cards(props) {
       genres={videogame.genres}
     />
   ));
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    const maxPage = Math.ceil(filteredVideogames.length / cardsPerPage);
+    if (currentPage < maxPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   const handleOrderByName = (e) => {
     const selectedOrder = e.target.value;
@@ -58,6 +77,8 @@ export default function Cards(props) {
     setRatingOrder("none");
     setName("");
     setGenreFilter("all");
+    setSourceFilter("all");
+    setCurrentPage(1);
     fetchVideogames();
   };
 
@@ -69,8 +90,14 @@ export default function Cards(props) {
     const selectedFilter = e.target.value;
     dispatch(filterCardsByGenre(selectedFilter));
     setGenreFilter(selectedFilter);
-    setNameOrder("none");
-    setRatingOrder("none");
+    setSourceFilter("all");
+  };
+
+  const handleFilterBySource = (e) => {
+    const selectedFilter = e.target.value;
+    dispatch(filterCardsBySource(selectedFilter));
+    setSourceFilter(selectedFilter);
+    setGenreFilter("all");
   };
 
   return (
@@ -79,9 +106,7 @@ export default function Cards(props) {
         <input type="text" onChange={handleChange} value={name} />
         <button onClick={handleSearch}>Search Videogame</button>
       </div>
-      <div>
-        <button onClick={handleRefresh}>Refresh Cards</button>
-      </div>
+
       <div>
         <select onChange={handleOrderByName} value={nameOrder}>
           <option value="none">Sort by name: none</option>
@@ -98,10 +123,27 @@ export default function Cards(props) {
       </div>
       <div>
         <select onChange={handleFilterByGenre} value={genreFilter}>
-          <option value="all">Show all</option>
+          <option value="all">Filter by genre</option>
           {genresFilter}
+          <option value="Genreless">Genreless</option>
         </select>
       </div>
+      <div>
+        <select onChange={handleFilterBySource} value={sourceFilter}>
+          <option value="all">Filter by source</option>
+          <option value="api">API Videogames</option>
+          <option value="db">Database Videogames</option>
+        </select>
+      </div>
+      <div>
+        <button onClick={handleRefresh}>Refresh Cards</button>
+      </div>
+      <div>
+        <button onClick={handlePreviousPage}>Previous Page</button>
+        <span> Page {currentPage} </span>
+        <button onClick={handleNextPage}>Next Page</button>
+      </div>
+
       <div>{videogamesList}</div>
     </div>
   );

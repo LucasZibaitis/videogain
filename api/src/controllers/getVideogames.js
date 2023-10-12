@@ -1,5 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
+const { Videogame, Genre } = require("../db");
 const { API_KEY } = process.env;
 const BASE_URL = "https://api.rawg.io/api/games";
 
@@ -8,6 +9,8 @@ const getVideogames = async (req, res) => {
     let allResults = [];
     let currentPage = 1;
     const pageSize = 100;
+
+    const dbVideogames = await Videogame.findAll({ include: Genre });
 
     while (allResults.length < pageSize) {
       const { data } = await axios.get(
@@ -20,7 +23,9 @@ const getVideogames = async (req, res) => {
       currentPage++;
     }
 
-    return res.status(200).json(allResults);
+    const combinedGames = [...dbVideogames, ...allResults];
+
+    return res.status(200).json(combinedGames);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
