@@ -20,13 +20,17 @@ export default function Cards(props) {
   const [genreFilter, setGenreFilter] = React.useState("all");
   const [sourceFilter, setSourceFilter] = React.useState("all");
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [loading, setLoading] = React.useState(true);
   const cardsPerPage = 15;
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = currentPage * cardsPerPage;
   const visibleVideogames = filteredVideogames.slice(startIndex, endIndex);
 
   React.useEffect(() => {
-    fetchVideogames();
+    setLoading(true);
+    fetchVideogames().then(() => {
+      setLoading(false);
+    });
     fetchGenres();
     fetchPlatforms();
   }, []);
@@ -112,7 +116,6 @@ export default function Cards(props) {
         <input type="text" onChange={handleChange} value={name} />
         <button onClick={handleSearch}>Search Videogame</button>
       </div>
-
       <div>
         <select onChange={handleOrderByName} value={nameOrder}>
           <option value="none">Sort by name: none</option>
@@ -149,8 +152,13 @@ export default function Cards(props) {
         <span> Page {currentPage} </span>
         <button onClick={handleNextPage}>Next Page</button>
       </div>
-
-      <div>{videogamesList}</div>
+      {loading ? (
+        <div>
+          <h1>Loading cards...</h1>
+        </div>
+      ) : (
+        <div>{videogamesList}</div>
+      )}
     </div>
   );
 }

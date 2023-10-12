@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import validate from "./validation";
 
 export default function Form(props) {
   const genres = useSelector((state) => state.allGenres);
@@ -15,12 +16,23 @@ export default function Form(props) {
     released: "",
     rating: "",
   });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    image: "",
+    description: "",
+    released: "",
+    rating: "",
+    platforms: "",
+  });
+
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrors(validate({ ...formData, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -80,6 +92,9 @@ export default function Form(props) {
         )
       );
     }
+    if (selectedPlatforms.length > 0) {
+      setErrors({ ...errors, platforms: "" });
+    }
   };
 
   const selectGenres = genres.map((genre) => (
@@ -119,6 +134,7 @@ export default function Form(props) {
             value={formData.name}
             onChange={handleChange}
           ></input>
+          <p>{errors.name}</p>
         </div>
         <div>
           <label>Image:</label>
@@ -129,6 +145,7 @@ export default function Form(props) {
             onChange={handleChange}
             placeholder="URL"
           ></input>
+          <p>{errors.background_image}</p>
         </div>
         <div>
           <label>Description:</label>
@@ -137,10 +154,12 @@ export default function Form(props) {
             value={formData.description}
             onChange={handleChange}
           />
+          <p>{errors.description}</p>
         </div>
         <div>
           <label>Platforms:</label>
           <div>{selectPlatforms}</div>
+          <p>{errors.platforms}</p>
         </div>
         <div>
           <label>Release Date:</label>
@@ -150,6 +169,7 @@ export default function Form(props) {
             value={formData.released}
             onChange={handleChange}
           />
+          <p>{errors.released}</p>
         </div>
         <div>
           <label>Rating:</label>
@@ -159,6 +179,7 @@ export default function Form(props) {
             value={formData.rating}
             onChange={handleChange}
           />
+          <p>{errors.rating}</p>
         </div>
         <div>
           <label>Genres:</label>
