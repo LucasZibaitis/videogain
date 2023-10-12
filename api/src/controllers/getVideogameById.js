@@ -25,7 +25,25 @@ const getVideogamesById = async (req, res) => {
       const apiResponse = await axios.get(`${URL}${id}?key=${API_KEY}`);
       const apiGame = apiResponse.data;
       if (apiGame) {
-        return res.status(200).json(apiGame);
+        const {
+          id,
+          rating,
+          name,
+          platforms,
+          genres,
+          background_image,
+          description,
+        } = apiGame;
+        const response = {
+          id,
+          rating,
+          name,
+          platforms,
+          genres,
+          background_image,
+          description,
+        };
+        return res.status(200).json(response);
       } else {
         return res.status(404).send("Videogame was not found");
       }

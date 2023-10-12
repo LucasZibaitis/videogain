@@ -74,7 +74,14 @@ const rootReducer = (state = initialState, action) => {
         return { ...state, filteredVideogames: state.allVideogames };
       }
       const filteredVideogamesByGenre = state.allVideogames.filter(
-        (videogame) => videogame.genres[0].name === action.payload
+        (videogame) => {
+          if (action.payload === "Genreless") {
+            return !videogame.genres || videogame.genres.length === 0;
+          } else {
+            const firstGenre = videogame.genres ? videogame.genres[0] : null;
+            return firstGenre ? firstGenre.name === action.payload : false;
+          }
+        }
       );
       return {
         ...state,

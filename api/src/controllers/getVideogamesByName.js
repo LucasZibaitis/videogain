@@ -19,13 +19,28 @@ const getVideogamesByName = async (req, res) => {
       include: Genre,
     });
 
-    const [apiGames, dbGames] = await Promise.all([apiResponse, dbResponse]);
+    const [apiVideogames, dbVideogames] = await Promise.all([
+      apiResponse,
+      dbResponse,
+    ]);
 
-    const combinedGames = [...dbGames, ...apiGames.data.results];
+    const apiVideogamesTransformed = apiVideogames.data.results.map(
+      (videogame) => ({
+        id: videogame.id,
+        rating: videogame.rating,
+        name: videogame.name,
+        genres: videogame.genres,
+        description: videogame.description,
+        platforms: videogame.platforms,
+        background_image: videogame.background_image,
+      })
+    );
 
-    const resultGames = combinedGames.slice(0, 15);
+    const combinedVideogames = [...dbVideogames, ...apiVideogamesTransformed];
 
-    return res.status(200).json(resultGames);
+    const resultVideogames = combinedVideogames.slice(0, 15);
+
+    return res.status(200).json(resultVideogames);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

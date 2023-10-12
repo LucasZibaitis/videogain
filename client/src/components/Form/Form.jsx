@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Form(props) {
   const genres = useSelector((state) => state.allGenres);
   const platforms = useSelector((state) => state.allPlatforms);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -23,6 +25,7 @@ export default function Form(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(selectedGenres);
     try {
       const response = await axios.post("http://localhost:3001/videogames", {
         name: formData.name,
@@ -45,8 +48,9 @@ export default function Form(props) {
         released: "",
         rating: "",
       });
+      navigate("/home");
     } catch (error) {
-      console.error("Error al crear el videojuego:", error);
+      console.error(error);
     }
   };
 

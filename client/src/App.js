@@ -7,7 +7,7 @@ import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
 import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setAllGenres,
   setAllPlatforms,
@@ -17,7 +17,6 @@ import {
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const filteredVideogames = useSelector((state) => state.filteredVideogames);
 
   const fetchVideogames = async () => {
     try {
@@ -48,12 +47,6 @@ function App() {
     }
   };
 
-  React.useEffect(() => {
-    fetchVideogames();
-    fetchGenres();
-    fetchPlatforms();
-  }, []);
-
   return (
     <div className="App">
       {location.pathname !== "/" ? <Nav /> : null}
@@ -61,9 +54,19 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route
           path="/home"
-          element={<Cards fetchVideogames={fetchVideogames} />}
+          element={
+            <Cards
+              fetchVideogames={fetchVideogames}
+              fetchGenres={fetchGenres}
+              fetchPlatforms={fetchPlatforms}
+            />
+          }
         />
-        <Route path="/form" element={<Form />} />
+        <Route
+          path="/form"
+          element={<Form />}
+          fetchVideogames={fetchVideogames}
+        />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>

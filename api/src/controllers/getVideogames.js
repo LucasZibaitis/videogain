@@ -6,17 +6,36 @@ const BASE_URL = "https://api.rawg.io/api/games";
 
 const getVideogames = async (req, res) => {
   try {
+    const dbVideogames = await Videogame.findAll({ include: Genre });
+
     let allResults = [];
     let currentPage = 1;
     const pageSize = 100;
-
-    const dbVideogames = await Videogame.findAll({ include: Genre });
 
     while (allResults.length < pageSize) {
       const { data } = await axios.get(
         `${BASE_URL}?key=${API_KEY}&page=${currentPage}`
       );
-      const results = data.results;
+      const results = data.results.map((result) => {
+        const {
+          id,
+          name,
+          background_image,
+          rating,
+          genres,
+          platforms,
+          description,
+        } = result;
+        return {
+          id,
+          name,
+          background_image,
+          rating,
+          genres,
+          platforms,
+          description,
+        };
+      });
 
       allResults = [...allResults, ...results];
 

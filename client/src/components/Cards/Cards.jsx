@@ -14,7 +14,7 @@ export default function Cards(props) {
   const filteredVideogames = useSelector((state) => state.filteredVideogames);
   const allGenres = useSelector((state) => state.allGenres);
   const [name, setName] = React.useState("");
-  const { fetchVideogames, initialLoad } = props;
+  const { fetchVideogames, fetchPlatforms, fetchGenres } = props;
   const [nameOrder, setNameOrder] = React.useState("none");
   const [ratingOrder, setRatingOrder] = React.useState("none");
   const [genreFilter, setGenreFilter] = React.useState("all");
@@ -24,6 +24,12 @@ export default function Cards(props) {
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = currentPage * cardsPerPage;
   const visibleVideogames = filteredVideogames.slice(startIndex, endIndex);
+
+  React.useEffect(() => {
+    fetchVideogames();
+    fetchGenres();
+    fetchPlatforms();
+  }, []);
 
   const videogamesList = visibleVideogames.map((videogame) => (
     <Card
@@ -73,13 +79,13 @@ export default function Cards(props) {
   };
 
   const handleRefresh = () => {
+    fetchVideogames();
     setNameOrder("none");
     setRatingOrder("none");
     setName("");
     setGenreFilter("all");
     setSourceFilter("all");
     setCurrentPage(1);
-    fetchVideogames();
   };
 
   const genresFilter = allGenres.map((genre) => (
