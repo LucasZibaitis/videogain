@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import validate from "./validation";
+import { validate, validatePlatforms } from "./validation";
+import styles from "./Form.module.css";
 
 export default function Form(props) {
   const genres = useSelector((state) => state.allGenres);
@@ -28,16 +29,30 @@ export default function Form(props) {
 
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  React.useEffect(() => {
+    const initialErrors = validate(formData);
+    const platformErrors = validatePlatforms(selectedPlatforms);
+    setErrors({
+      ...initialErrors,
+      platforms: platformErrors.platforms,
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setErrors(validate({ ...formData, [name]: value }));
+    console.log(formSubmitted);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selectedGenres);
+    setFormSubmitted(true);
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
     try {
       const response = await axios.post("http://localhost:3001/videogames", {
         name: formData.name,
@@ -48,11 +63,9 @@ export default function Form(props) {
         rating: formData.rating,
         genres: selectedGenres,
       });
-
       window.alert(
         `The videogame: "${response.data.name}" has been created successfully`
       );
-
       setFormData({
         name: "",
         image: "",
@@ -60,6 +73,7 @@ export default function Form(props) {
         released: "",
         rating: "",
       });
+      setFormSubmitted(false);
       navigate("/home");
     } catch (error) {
       console.error(error);
@@ -92,9 +106,8 @@ export default function Form(props) {
         )
       );
     }
-    if (selectedPlatforms.length > 0) {
-      setErrors({ ...errors, platforms: "" });
-    }
+    const platformErrors = validatePlatforms(selectedPlatforms);
+    setErrors({ ...errors, platforms: platformErrors.platforms });
   };
 
   const selectGenres = genres.map((genre) => (
@@ -134,7 +147,7 @@ export default function Form(props) {
             value={formData.name}
             onChange={handleChange}
           ></input>
-          <p>{errors.name}</p>
+          <p className={styles.danger}>{formSubmitted ? errors.name : ""}</p>
         </div>
         <div>
           <label>Image:</label>
@@ -145,7 +158,7 @@ export default function Form(props) {
             onChange={handleChange}
             placeholder="URL"
           ></input>
-          <p>{errors.background_image}</p>
+          <p className={styles.danger}>{formSubmitted ? errors.image : ""}</p>
         </div>
         <div>
           <label>Description:</label>
@@ -154,12 +167,16 @@ export default function Form(props) {
             value={formData.description}
             onChange={handleChange}
           />
-          <p>{errors.description}</p>
+          <p className={styles.danger}>
+            {formSubmitted ? errors.description : ""}
+          </p>
         </div>
         <div>
           <label>Platforms:</label>
           <div>{selectPlatforms}</div>
-          <p>{errors.platforms}</p>
+          <p className={styles.danger}>
+            {formSubmitted ? errors.platforms : ""}
+          </p>
         </div>
         <div>
           <label>Release Date:</label>
@@ -169,7 +186,9 @@ export default function Form(props) {
             value={formData.released}
             onChange={handleChange}
           />
-          <p>{errors.released}</p>
+          <p className={styles.danger}>
+            {formSubmitted ? errors.released : ""}
+          </p>
         </div>
         <div>
           <label>Rating:</label>
@@ -179,7 +198,7 @@ export default function Form(props) {
             value={formData.rating}
             onChange={handleChange}
           />
-          <p>{errors.rating}</p>
+          <p className={styles.danger}>{formSubmitted ? errors.rating : ""}</p>
         </div>
         <div>
           <label>Genres:</label>

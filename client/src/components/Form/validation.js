@@ -1,15 +1,15 @@
-export default function validate(formData, selectedPlatforms) {
+export function validate(formData) {
   const ratingPattern = /^\d+(\.\d+)?$/;
-  const urlPattern = /^https?:\/\/\S+$/;
+  const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
   const errors = {};
   if (!formData.name) {
     errors.name = "Name is required";
   }
-  if (!formData.background_image) {
-    errors.background_image = "Image is required";
+  if (!formData.image) {
+    errors.image = "Image is required";
   }
-  if (!urlPattern.test(formData.background_image)) {
-    errors.background_image = "Image must be a valid URL";
+  if (!urlPattern.test(formData.image)) {
+    errors.image = "Image must be a valid URL";
   }
   if (!formData.description) {
     errors.description = "Description is required";
@@ -23,10 +23,13 @@ export default function validate(formData, selectedPlatforms) {
   if (!ratingPattern.test(formData.rating)) {
     errors.rating = "Rating must be a number o decimal";
   }
-  if (!selectedPlatforms || selectedPlatforms.length === 0) {
+  return errors;
+}
+
+export function validatePlatforms(selectedPlatforms) {
+  const errors = {};
+  if (selectedPlatforms.length === 0) {
     errors.platforms = "At least one platform is required";
-  } else {
-    errors.platforms = "";
   }
   return errors;
 }
