@@ -8,6 +8,7 @@ import {
   orderCardsByName,
   setVideogamesByName,
 } from "../../redux/actions";
+import styles from "./Cards.module.css";
 
 export default function Cards(props) {
   const dispatch = useDispatch();
@@ -113,51 +114,85 @@ export default function Cards(props) {
   return (
     <div>
       <div>
-        <input type="text" onChange={handleChange} value={name} />
-        <button onClick={handleSearch}>Search Videogame</button>
+        <input
+          type="text"
+          onChange={handleChange}
+          value={name}
+          className={styles.searchInput}
+        />
+        <button onClick={handleSearch} className={styles.searchButton}>
+          Search Videogame
+        </button>
+      </div>
+      <div className={styles.filterContainer}>
+        <div>
+          <select
+            onChange={handleOrderByName}
+            value={nameOrder}
+            className={styles.orderButton}
+          >
+            <option value="none">Sort by name: none</option>
+            <option value="A">Sort by name: A to Z</option>
+            <option value="Z">Sort by name: Z to A</option>
+          </select>
+        </div>
+        <div>
+          <select
+            onChange={handleOrderByRating}
+            value={ratingOrder}
+            className={styles.orderButton}
+          >
+            <option value="none">Sort by rating: none</option>
+            <option value="A">Sort by rating: Ascending</option>
+            <option value="D">Sort by rating: Descending</option>
+          </select>
+        </div>
+        <div>
+          <select
+            onChange={handleFilterByGenre}
+            value={genreFilter}
+            className={styles.filterButton}
+          >
+            <option value="all">Filter by genre</option>
+            {genresFilter}
+            <option value="Genreless">Genreless</option>
+          </select>
+        </div>
+        <div>
+          <select
+            onChange={handleFilterBySource}
+            value={sourceFilter}
+            className={styles.filterButton}
+          >
+            <option value="all">Filter by source</option>
+            <option value="api">API Videogames</option>
+            <option value="db">Database Videogames</option>
+          </select>
+        </div>
       </div>
       <div>
-        <select onChange={handleOrderByName} value={nameOrder}>
-          <option value="none">Sort by name: none</option>
-          <option value="A">Sort by name: A to Z</option>
-          <option value="Z">Sort by name: Z to A</option>
-        </select>
+        <button onClick={handleRefresh} className={styles.refreshButton}>
+          Refresh Cards
+        </button>
       </div>
-      <div>
-        <select onChange={handleOrderByRating} value={ratingOrder}>
-          <option value="none">Sort by rating: none</option>
-          <option value="A">Sort by rating: Ascending</option>
-          <option value="D">Sort by rating: Descending</option>
-        </select>
-      </div>
-      <div>
-        <select onChange={handleFilterByGenre} value={genreFilter}>
-          <option value="all">Filter by genre</option>
-          {genresFilter}
-          <option value="Genreless">Genreless</option>
-        </select>
-      </div>
-      <div>
-        <select onChange={handleFilterBySource} value={sourceFilter}>
-          <option value="all">Filter by source</option>
-          <option value="api">API Videogames</option>
-          <option value="db">Database Videogames</option>
-        </select>
-      </div>
-      <div>
-        <button onClick={handleRefresh}>Refresh Cards</button>
-      </div>
-      <div>
-        <button onClick={handlePreviousPage}>Previous Page</button>
+      <div className={styles.paginationContainer}>
+        <button
+          onClick={handlePreviousPage}
+          className={styles.paginationButton}
+        >
+          Previous Page
+        </button>
         <span> Page {currentPage} </span>
-        <button onClick={handleNextPage}>Next Page</button>
+        <button onClick={handleNextPage} className={styles.paginationButton}>
+          Next Page
+        </button>
       </div>
       {loading ? (
         <div>
           <h1>Loading cards...</h1>
         </div>
       ) : (
-        <div>{videogamesList}</div>
+        <div className={styles.cardList}>{videogamesList}</div>
       )}
     </div>
   );

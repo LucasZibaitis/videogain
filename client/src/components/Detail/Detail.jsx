@@ -77,7 +77,7 @@ export default function Detail() {
           <h1>ID: {videogame.id}</h1>
           <h1>{videogame.name}</h1>
           <h3>{videogame.description}</h3>
-          <img src={videogame.background_image} alt="" height={500} />
+          <img src={videogame.background_image} alt="" height={200} />
           <h3>Released: {videogame.released}</h3>
           <h3>Rating: {videogame.rating}</h3>
           <h3>Genres: {renderGenres()}</h3>

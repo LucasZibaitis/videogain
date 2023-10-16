@@ -1,0 +1,15 @@
+.card {
+  background-color: beige;
+  width: 280px;
+  height: 350px;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: #000;
+}
+
+.cardImage {
+  max-width: 90%;
+  height: auto;
+}

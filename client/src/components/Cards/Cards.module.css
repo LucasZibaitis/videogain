@@ -1,0 +1,86 @@
+/* Cards.jsx */
+.filterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.orderButton,
+.filterButton,
+.refreshButton {
+  background-color: #f78f18; /* Naranja */
+  color: #333; /* Texto oscuro */
+  border: none;
+  padding: 10px 20px; /* Espaciado interno del botón */
+  margin: 10px 5px; /* Margen entre botones */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Arial", sans-serif; /* Cambia la fuente */
+  font-size: 14px; /* Cambia el tamaño de fuente */
+  border-radius: 5px; /* Borde redondeado */
+}
+
+/* Cambia el color de fondo al pasar el mouse por encima */
+.filterButton:hover,
+.orderButton:hover,
+.refreshButton:hover {
+  background-color: #f75c18; /* Naranja más oscuro al pasar el mouse */
+}
+
+.searchInput {
+  padding: 5px;
+  border: 2px solid #333; /* Borde oscuro */
+  background-color: #fff; /* Fondo blanco */
+  color: #333; /* Texto oscuro */
+  margin-right: 10px;
+  font-family: "Arial", sans-serif; /* Cambia la fuente */
+  font-size: 14px; /* Cambia el tamaño de fuente */
+  border-radius: 5px;
+}
+
+.searchButton {
+  background-color: #f78f18; /* Naranja */
+  color: #333; /* Texto oscuro */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Arial", sans-serif; /* Cambia la fuente */
+  font-size: 14px; /* Cambia el tamaño de fuente */
+  border-radius: 5px;
+}
+
+.searchButton:hover {
+  background-color: #f75c18; /* Naranja más oscuro al pasar el mouse */
+}
+
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px; /* Margen arriba */
+}
+
+.paginationButton {
+  background-color: #f78f18; /* Naranja */
+  color: #333; /* Texto oscuro */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Arial", sans-serif; /* Cambia la fuente */
+  font-size: 14px; /* Cambia el tamaño de fuente */
+  border-radius: 5px;
+  margin: 0 5px; /* Margen izquierda y derecha */
+}
+
+.paginationButton:hover {
+  background-color: #f75c18; /* Naranja más oscuro al pasar el mouse */
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./Card.module.css";
 
 export default function Card(props) {
   const genreName =
@@ -9,11 +10,11 @@ export default function Card(props) {
 
   return (
     <div>
-      <Link to={`/detail/${props.id}`}>
-        <div>
-          <h1>Name: {props.name}</h1>
-          <h1>Main Genre: {genreName}</h1>
-          <img src={props.image} height={200} />
+      <Link to={`/detail/${props.id}`} className={styles.cardLink}>
+        <div className={styles.card}>
+          <h2 className={styles.cardName}>{props.name}</h2>
+          <h3>{genreName}</h3>
+          <img src={props.image} height={100} className={styles.cardImage} />
         </div>
       </Link>
     </div>
