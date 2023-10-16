@@ -1,0 +1,65 @@
+.navBarImg {
+  max-width: 92%;
+  margin-top: 30px;
+}
+.navBarButtonHome {
+  bottom: 85px;
+  left: 100px;
+  display: inline;
+  position: relative;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 25pt;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+
+.navBarButtonHome:hover {
+  color: rgb(60, 73, 153);
+}
+
+.navBarButtonForm {
+  position: relative;
+  display: inline;
+  bottom: 85px;
+  left: 170px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 25pt;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+
+.navBarButtonForm:hover {
+  color: rgb(60, 73, 153);
+}
+
+.navBarButtonExit {
+  position: relative;
+  display: inline;
+  bottom: 85px;
+  left: 235px;
+  background: transparent;
+  border: none;
+  color: white;
+  z-index: 1;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 25pt;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+
+.navBarButtonExit:hover {
+  color: rgb(60, 73, 153);
+}
+
+a,
+.navBarButtonHome,
+.navBarButtonForm,
+.navBarButtonExit {
+  text-decoration: none;
+}
