@@ -2,13 +2,11 @@
   max-width: 92%;
   margin-top: 30px;
 }
+
 .navBarButtonHome {
-  bottom: 85px;
-  left: 100px;
-  display: inline;
-  position: relative;
+  margin-right: 85px;
+  margin-top: -85px;
   background: transparent;
-  border: none;
   color: white;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 25pt;
@@ -21,12 +19,9 @@
 }
 
 .navBarButtonForm {
-  position: relative;
-  display: inline;
-  bottom: 85px;
-  left: 170px;
+  margin-left: 369px;
+  margin-top: -73px;
   background: transparent;
-  border: none;
   color: white;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 25pt;
@@ -39,14 +34,10 @@
 }
 
 .navBarButtonExit {
-  position: relative;
-  display: inline;
-  bottom: 85px;
-  left: 235px;
+  margin-left: 790px;
+  margin-top: -73px;
   background: transparent;
-  border: none;
   color: white;
-  z-index: 1;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 25pt;
   font-weight: 300;

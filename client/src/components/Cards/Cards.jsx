@@ -120,9 +120,9 @@ export default function Cards(props) {
           value={name}
           className={styles.searchInput}
         />
-        <button onClick={handleSearch} className={styles.searchButton}>
-          Search Videogame
-        </button>
+        <div className={styles.searchButtonFrame} onClick={handleSearch}>
+          <p className={styles.searchButton}>search</p>
+        </div>
       </div>
       <div className={styles.filterContainer}>
         <div>
@@ -131,9 +131,9 @@ export default function Cards(props) {
             value={nameOrder}
             className={styles.orderButton}
           >
-            <option value="none">Sort by name: none</option>
-            <option value="A">Sort by name: A to Z</option>
-            <option value="Z">Sort by name: Z to A</option>
+            <option value="none">sort by name</option>
+            <option value="A">sort by name: A to Z</option>
+            <option value="Z">sort by name: Z to A</option>
           </select>
         </div>
         <div>
@@ -142,9 +142,9 @@ export default function Cards(props) {
             value={ratingOrder}
             className={styles.orderButton}
           >
-            <option value="none">Sort by rating: none</option>
-            <option value="A">Sort by rating: Ascending</option>
-            <option value="D">Sort by rating: Descending</option>
+            <option value="none">sort by rating</option>
+            <option value="A">sort by rating: Ascending</option>
+            <option value="D">sort by rating: Descending</option>
           </select>
         </div>
         <div>
@@ -153,7 +153,7 @@ export default function Cards(props) {
             value={genreFilter}
             className={styles.filterButton}
           >
-            <option value="all">Filter by genre</option>
+            <option value="all">filter by genre</option>
             {genresFilter}
             <option value="Genreless">Genreless</option>
           </select>
@@ -164,18 +164,18 @@ export default function Cards(props) {
             value={sourceFilter}
             className={styles.filterButton}
           >
-            <option value="all">Filter by source</option>
+            <option value="all">filter by source</option>
             <option value="api">API Videogames</option>
             <option value="db">Database Videogames</option>
           </select>
         </div>
       </div>
-      <div>
-        <button onClick={handleRefresh} className={styles.refreshButton}>
-          Refresh Cards
-        </button>
+      <div className={styles.refreshButtonFrame}>
+        <p onClick={handleRefresh} className={styles.refreshButton}>
+          refresh
+        </p>
       </div>
-      <div className={styles.paginationContainer}>
+      {/* <div className={styles.paginationContainer}>
         <button
           onClick={handlePreviousPage}
           className={styles.paginationButton}
@@ -186,14 +186,14 @@ export default function Cards(props) {
         <button onClick={handleNextPage} className={styles.paginationButton}>
           Next Page
         </button>
-      </div>
-      {loading ? (
+      </div> */}
+      {/* {loading ? (
         <div>
           <h1>Loading cards...</h1>
         </div>
       ) : (
         <div className={styles.cardList}>{videogamesList}</div>
-      )}
+      )} */}
     </div>
   );
 }
