@@ -1,4 +1,5 @@
 .cardList {
+  margin-top: 100px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
@@ -57,11 +58,79 @@
 
 .refreshButtonFrame {
   margin-left: 1290px;
-  margin-top: -110px;
+  margin-top: -85px;
   width: 150px; /* Ancho */
   height: 26px; /* Alto */
   background: transparent; /* Sin color de fondo */
   border: 1px solid #fff; /* Borde blanco fino */
   border-radius: 2mm; /* Bordes redondeados de 2mm */
   cursor: pointer;
+}
+
+.filterContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.selectorButton {
+  text-align: center;
+  background: transparent;
+  border: 1px solid #fff; /* Borde blanco fino */
+  border-radius: 1mm; /* Bordes redondeados de 2mm */
+  height: 27px;
+  width: 270px;
+  margin: 0 50px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+  color: #ffffff;
+  transition: background-color 0.3s;
+  transition: border 0.3s;
+  cursor: pointer;
+}
+
+.selectorButton:hover {
+  background-color: rgb(60, 73, 153);
+  border: 1px solid rgb(60, 73, 153);
+}
+
+.paginationContainer {
+  margin-left: 700px;
+  margin-top: -60px;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationButton {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 24pt;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+  margin: 0 25px;
+  margin-top: 23px;
+  transition: color 0.3s;
+}
+
+.paginationPage {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 33px;
+}
+
+.paginationButton:hover {
+  color: rgb(60, 73, 153);
+}
+
+.loadingDiv {
+  margin-top: 300px;
+}
+
+.loadingH1 {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 30pt;
+  color: #ffffff;
 }

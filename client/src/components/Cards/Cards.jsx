@@ -129,7 +129,7 @@ export default function Cards(props) {
           <select
             onChange={handleOrderByName}
             value={nameOrder}
-            className={styles.orderButton}
+            className={styles.selectorButton}
           >
             <option value="none">sort by name</option>
             <option value="A">sort by name: A to Z</option>
@@ -140,7 +140,7 @@ export default function Cards(props) {
           <select
             onChange={handleOrderByRating}
             value={ratingOrder}
-            className={styles.orderButton}
+            className={styles.selectorButton}
           >
             <option value="none">sort by rating</option>
             <option value="A">sort by rating: Ascending</option>
@@ -151,7 +151,7 @@ export default function Cards(props) {
           <select
             onChange={handleFilterByGenre}
             value={genreFilter}
-            className={styles.filterButton}
+            className={styles.selectorButton}
           >
             <option value="all">filter by genre</option>
             {genresFilter}
@@ -162,7 +162,7 @@ export default function Cards(props) {
           <select
             onChange={handleFilterBySource}
             value={sourceFilter}
-            className={styles.filterButton}
+            className={styles.selectorButton}
           >
             <option value="all">filter by source</option>
             <option value="api">API Videogames</option>
@@ -175,25 +175,24 @@ export default function Cards(props) {
           refresh
         </p>
       </div>
-      {/* <div className={styles.paginationContainer}>
-        <button
-          onClick={handlePreviousPage}
-          className={styles.paginationButton}
-        >
-          Previous Page
-        </button>
-        <span> Page {currentPage} </span>
-        <button onClick={handleNextPage} className={styles.paginationButton}>
-          Next Page
-        </button>
-      </div> */}
-      {/* {loading ? (
-        <div>
-          <h1>Loading cards...</h1>
-        </div>
-      ) : (
-        <div className={styles.cardList}>{videogamesList}</div>
-      )} */}
+      <div className={styles.paginationContainer}>
+        <p onClick={handlePreviousPage} className={styles.paginationButton}>
+          &lt;
+        </p>
+        <p className={styles.paginationPage}> page {currentPage} </p>
+        <p onClick={handleNextPage} className={styles.paginationButton}>
+          &gt;
+        </p>
+      </div>
+      <div>
+        {loading ? (
+          <div className={styles.loadingDiv}>
+            <h1 className={styles.loadingH1}>loading cards...</h1>
+          </div>
+        ) : (
+          <div className={styles.cardList}>{videogamesList}</div>
+        )}
+      </div>
     </div>
   );
 }
