@@ -27,6 +27,7 @@ const rootReducer = (state = initialState, action) => {
     case SET_VIDEOGAMES_BY_NAME:
       return {
         ...state,
+        allVideogames: action.payload,
         filteredVideogames: action.payload,
       };
     case SET_ALL_GENRES:
