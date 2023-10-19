@@ -51,7 +51,7 @@
   justify-content: center;
   align-items: center;
   margin-left: 1290px;
-  margin-top: -85px;
+  margin-top: -91px;
   width: 150px; /* Ancho */
   height: 30px; /* Alto */
   background: transparent; /* Sin color de fondo */
@@ -97,7 +97,7 @@
 
 .paginationContainer {
   margin-left: 700px;
-  margin-top: -46px;
+  margin-top: -48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -105,7 +105,7 @@
 
 .arrowLeft {
   cursor: pointer;
-  height: 29px;
+  height: 27px;
   margin-left: 330px;
   margin-top: 4px;
   transition: transform 0.3s;
@@ -118,7 +118,7 @@
 .arrowRight {
   cursor: pointer;
   transform: rotate(180deg);
-  height: 29px;
+  height: 27px;
   margin-right: 330px;
   margin-top: 4px;
   transition: transform 0.3s;

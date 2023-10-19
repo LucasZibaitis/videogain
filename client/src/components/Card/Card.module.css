@@ -6,6 +6,9 @@
   border-radius: 3mm;
   height: 300px;
   transition: box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card:hover {
@@ -15,6 +18,48 @@
 .cardLink {
   text-decoration: none;
   color: #000;
+}
+
+.cardNameContainer {
+  margin-left: 16px;
+  margin-right: 16px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+}
+
+.cardName {
+  color: #ffffff;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 18pt;
+  line-height: 1.2;
+}
+
+.cardGenreContainer {
+  background-color: grey;
+  border-style: solid;
+  border-color: white;
+  border-width: 4px;
+  border-bottom-left-radius: 4mm;
+  border-bottom-right-radius: 4mm;
+  height: 35px;
+  width: 226px;
+  display: flex;
+  align-items: center;
+}
+
+.cardGenre {
+  color: #ffffff;
+  font-family: "Helvetica Neue", sans-serif;
+  font-style: italic;
+  font-size: 18pt;
+  font-weight: 380;
+  text-align: left;
+  text-transform: lowercase;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .cardImage {

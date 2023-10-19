@@ -12,8 +12,12 @@ export default function Card(props) {
     <div>
       <Link to={`/detail/${props.id}`} className={styles.cardLink}>
         <div className={styles.card}>
-          <h2 className={styles.cardName}>{props.name}</h2>
-          <h3>{genreName}</h3>
+          <div className={styles.cardNameContainer}>
+            <h1 className={styles.cardName}>{props.name}</h1>
+          </div>
+          <div className={styles.cardGenreContainer}>
+            <h2 className={styles.cardGenre}>{genreName}</h2>
+          </div>
           {/* <img src={props.image} height={100} className={styles.cardImage} /> */}
         </div>
       </Link>
