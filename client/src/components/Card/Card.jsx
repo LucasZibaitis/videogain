@@ -18,7 +18,9 @@ export default function Card(props) {
           <div className={styles.cardGenreContainer}>
             <h2 className={styles.cardGenre}>{genreName}</h2>
           </div>
-          {/* <img src={props.image} height={100} className={styles.cardImage} /> */}
+          <div className={styles.cardImageContainer}>
+            <img src={props.image} className={styles.cardImage} />
+          </div>
         </div>
       </Link>
     </div>

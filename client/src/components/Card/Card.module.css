@@ -1,18 +1,16 @@
 .card {
   background-color: rgb(60, 73, 153);
-  border-style: solid;
-  border-color: white;
-  border-width: 4px;
+  border: 4px solid white;
   border-radius: 3mm;
-  height: 300px;
+  height: 350px;
   transition: box-shadow 0.3s;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  overflow: hidden;
 }
 
 .card:hover {
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); /* Agregamos una sombra al pasar el cursor */
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.6);
 }
 
 .cardLink {
@@ -23,9 +21,9 @@
 .cardNameContainer {
   margin-left: 16px;
   margin-right: 16px;
-  height: 85px;
+  height: 150px;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: left;
   text-align: left;
 }
@@ -39,15 +37,19 @@
 
 .cardGenreContainer {
   background-color: grey;
-  border-style: solid;
-  border-color: white;
-  border-width: 4px;
+  border-top: 4px solid white;
+  border-bottom: 4px solid white;
+  border-left: 4px solid white;
+  border-right: 4px solid white;
   border-bottom-left-radius: 4mm;
   border-bottom-right-radius: 4mm;
   height: 35px;
-  width: 226px;
   display: flex;
   align-items: center;
+  margin-left: -4px;
+  margin-right: -4px;
+  z-index: 2;
+  position: relative;
 }
 
 .cardGenre {
@@ -62,7 +64,17 @@
   margin-right: 16px;
 }
 
+.cardImageContainer {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+  max-height: calc(100% - 125px);
+  height: 100%;
+}
+
 .cardImage {
-  max-width: 90%;
-  height: auto;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
