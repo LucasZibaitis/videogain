@@ -8,6 +8,7 @@ import {
   orderCardsByName,
   setVideogamesByName,
 } from "../../redux/actions";
+import Arrow from "./Arrow.png";
 import styles from "./Cards.module.css";
 
 export default function Cards(props) {
@@ -121,7 +122,7 @@ export default function Cards(props) {
           className={styles.searchInput}
         />
         <div className={styles.searchButtonFrame} onClick={handleSearch}>
-          <p className={styles.searchButton}>search</p>
+          <p>search</p>
         </div>
       </div>
       <div className={styles.filterContainer}>
@@ -170,19 +171,21 @@ export default function Cards(props) {
           </select>
         </div>
       </div>
-      <div className={styles.refreshButtonFrame}>
-        <p onClick={handleRefresh} className={styles.refreshButton}>
-          refresh
-        </p>
+      <div className={styles.refreshButtonFrame} onClick={handleRefresh}>
+        <p>refresh</p>
       </div>
       <div className={styles.paginationContainer}>
-        <p onClick={handlePreviousPage} className={styles.paginationButton}>
-          &lt;
-        </p>
+        <img
+          src={Arrow}
+          onClick={handlePreviousPage}
+          className={styles.arrowLeft}
+        />
         <p className={styles.paginationPage}> page {currentPage} </p>
-        <p onClick={handleNextPage} className={styles.paginationButton}>
-          &gt;
-        </p>
+        <img
+          src={Arrow}
+          onClick={handleNextPage}
+          className={styles.arrowRight}
+        />
       </div>
       <div>
         {loading ? (

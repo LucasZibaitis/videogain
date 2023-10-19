@@ -14,7 +14,7 @@ export default function Card(props) {
         <div className={styles.card}>
           <h2 className={styles.cardName}>{props.name}</h2>
           <h3>{genreName}</h3>
-          <img src={props.image} height={100} className={styles.cardImage} />
+          {/* <img src={props.image} height={100} className={styles.cardImage} /> */}
         </div>
       </Link>
     </div>

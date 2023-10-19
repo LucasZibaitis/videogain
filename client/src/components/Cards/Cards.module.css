@@ -1,9 +1,11 @@
 .cardList {
   margin-top: 100px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 50px;
+  /* padding: 20px; */
+  margin-right: 70px;
+  margin-left: 70px;
 }
 
 .searchInput {
@@ -13,72 +15,70 @@
   border: 1px solid #fff;
   border-radius: 2mm;
   width: 300px;
-  height: 25px;
-}
-
-.searchButton {
-  color: #ffffff;
-  border: none;
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 14pt;
-  font-weight: bold;
-  margin-top: 1px;
-  margin-left: 20px;
-  transition: color 0.3s;
-}
-
-.searchButton:hover {
-  color: rgb(60, 73, 153);
+  height: 29px;
 }
 
 .searchButtonFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 690px;
-  margin-top: -28.5px;
-  width: 220px; /* Ancho */
-  height: 26px; /* Alto */
-  background: transparent; /* Sin color de fondo */
-  border: 1px solid #fff; /* Borde blanco fino */
-  border-radius: 2mm; /* Bordes redondeados de 2mm */
+  margin-top: -32.3px;
+  width: 220px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 2mm;
   cursor: pointer;
-}
-
-.refreshButton {
+  position: relative;
   color: #ffffff;
-  border: none;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 14pt;
   font-weight: bold;
-  margin-top: 1px;
   transition: color 0.3s;
 }
 
-.refreshButton:hover {
+.searchButtonFrame:hover {
+  color: rgb(60, 73, 153);
+}
+
+.refreshButtonFrame:hover {
   color: rgb(60, 73, 153);
 }
 
 .refreshButtonFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 1290px;
   margin-top: -85px;
   width: 150px; /* Ancho */
-  height: 26px; /* Alto */
+  height: 30px; /* Alto */
   background: transparent; /* Sin color de fondo */
   border: 1px solid #fff; /* Borde blanco fino */
   border-radius: 2mm; /* Bordes redondeados de 2mm */
   cursor: pointer;
+  position: relative;
+  color: #ffffff;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
 .filterContainer {
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .selectorButton {
   text-align: center;
   background: transparent;
   border: 1px solid #fff; /* Borde blanco fino */
-  border-radius: 1mm; /* Bordes redondeados de 2mm */
-  height: 27px;
+  border-radius: 2mm; /* Bordes redondeados de 2mm */
+  height: 30px;
   width: 270px;
   margin: 0 50px;
   font-family: "Helvetica Neue", sans-serif;
@@ -97,20 +97,35 @@
 
 .paginationContainer {
   margin-left: 700px;
-  margin-top: -60px;
+  margin-top: -46px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.paginationButton {
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 24pt;
-  font-weight: bold;
-  color: #ffffff;
+.arrowLeft {
   cursor: pointer;
-  margin: 0 25px;
-  margin-top: 23px;
-  transition: color 0.3s;
+  height: 29px;
+  margin-left: 330px;
+  margin-top: 4px;
+  transition: transform 0.3s;
+}
+
+.arrowLeft:hover {
+  transform: scale(1.2);
+}
+
+.arrowRight {
+  cursor: pointer;
+  transform: rotate(180deg);
+  height: 29px;
+  margin-right: 330px;
+  margin-top: 4px;
+  transition: transform 0.3s;
+}
+
+.arrowRight:hover {
+  transform: rotate(180deg) scale(1.2);
 }
 
 .paginationPage {
@@ -118,11 +133,6 @@
   font-size: 14pt;
   font-weight: bold;
   color: #ffffff;
-  margin-top: 33px;
-}
-
-.paginationButton:hover {
-  color: rgb(60, 73, 153);
 }
 
 .loadingDiv {
@@ -132,5 +142,6 @@
 .loadingH1 {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 30pt;
+  font-weight: lighter;
   color: #ffffff;
 }

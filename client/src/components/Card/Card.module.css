@@ -1,7 +1,15 @@
 .card {
-  background-color: beige;
-  width: 280px;
-  height: 350px;
+  background-color: rgb(60, 73, 153);
+  border-style: solid;
+  border-color: white;
+  border-width: 4px;
+  border-radius: 3mm;
+  height: 300px;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); /* Agregamos una sombra al pasar el cursor */
 }
 
 .cardLink {
