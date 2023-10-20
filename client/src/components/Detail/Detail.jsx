@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "./Detail.module.css";
 
 export default function Detail() {
   const { id } = useParams();
@@ -70,18 +71,43 @@ export default function Detail() {
     );
   }
 
+  function createMarkup(text) {
+    return { __html: text };
+  }
+
   return (
-    <div>
+    <div className={styles.pageContainer}>
       {videogame ? (
-        <div>
-          <h1>ID: {videogame.id}</h1>
-          <h1>{videogame.name}</h1>
-          <h3>{videogame.description}</h3>
-          <img src={videogame.background_image} alt="" height={200} />
-          <h3>Released: {videogame.released}</h3>
-          <h3>Rating: {videogame.rating}</h3>
-          <h3>Genres: {renderGenres()}</h3>
-          <h3>Platforms: {renderPlatforms()}</h3>
+        <div className={styles.detailContainer}>
+          <div className={styles.card}>
+            <div className={styles.cardNameContainer}>
+              <h1 className={styles.cardName}>{videogame.name}</h1>
+            </div>
+            <div className={styles.cardGenreContainer}>
+              {/* <h2 className={styles.cardGenre}>{renderGenres()}</h2> */}
+            </div>
+            <div className={styles.cardImageContainer}>
+              <img
+                src={videogame.background_image}
+                className={styles.cardImage}
+              />
+            </div>
+          </div>
+          <div className={styles.infoContainer}>
+            <h1>ID: {videogame.id}</h1>
+            <h2>Description</h2>
+            <div
+              dangerouslySetInnerHTML={createMarkup(videogame.description)}
+            />
+            <h2>Release Date</h2>
+            {videogame.released}
+            <h2>Rating</h2>
+            {videogame.rating}
+            <h2>Genres</h2>
+            {renderGenres()}
+            <h2>Platforms</h2>
+            {renderPlatforms()}
+          </div>
         </div>
       ) : (
         <p>Loading videogame...</p>
