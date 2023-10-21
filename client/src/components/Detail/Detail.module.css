@@ -2,66 +2,21 @@
   background-color: rgb(60, 73, 153);
   border: 4px solid white;
   border-radius: 3mm;
-  height: 350px;
-  width: 220px;
+  height: 400px;
+  width: 300px;
   transition: box-shadow 0.3s;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   overflow: hidden;
   margin-top: 30px;
-  margin-left: 30px;
+  margin-left: 50px;
 }
-
-.cardNameContainer {
-  margin-left: 16px;
-  margin-right: 16px;
-  display: flex;
-  align-items: start;
-  justify-content: left;
-  text-align: left;
-  height: 145px;
-}
-
-.cardName {
-  color: #ffffff;
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 18pt;
-  line-height: 1.2;
-}
-
-.cardGenreContainer {
-  background-color: grey;
-  border: 4px solid white;
-  border-bottom-left-radius: 4mm;
-  border-bottom-right-radius: 4mm;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  margin-left: -4px;
-  margin-right: -4px;
-  z-index: 2;
-  position: relative;
-}
-
-.cardGenre {
-  color: #ffffff;
-  font-family: "Helvetica Neue", sans-serif;
-  font-style: italic;
-  font-size: 18pt;
-  font-weight: 380;
-  text-align: left;
-  text-transform: lowercase;
-  margin-left: 16px;
-  margin-right: 16px;
-}
-
 .cardImageContainer {
   position: relative;
   overflow: hidden;
   z-index: 1;
   width: 100%;
   height: 100%;
-  margin-top: -20px;
 }
 
 .cardImage {
@@ -75,25 +30,87 @@
   justify-content: center;
   align-items: center;
   margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .detailContainer {
   background-color: rgb(60, 73, 153);
   width: 1380px;
-  /* height: 550px; */
   border-radius: 3mm;
   border: solid 4px white;
   display: flex;
 }
 
 .infoContainer {
-  margin-left: 90px;
-  margin-right: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
   width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: right;
   font-family: "Helvetica Neue", sans-serif;
+  color: #ffffff;
+}
+
+.name {
+  font-size: 30pt;
+  margin-bottom: -10px;
+}
+
+.idContainer {
+  color: #fff;
+  display: flex;
+  justify-content: left;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  font-size: 10pt;
+}
+
+.description {
+  text-align: left;
+  max-height: 235px;
+  overflow: auto;
+}
+
+.descriptionTitle {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.others {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  margin-top: -30px;
+}
+.othersGroup {
+  margin-right: 130px;
+}
+
+.othersGroup:last-child {
+  margin-right: 0; /* Elimina el margen derecho del último grupo */
+}
+
+.othersTitle {
+  margin-top: 60px;
+  margin-bottom: 3px;
+}
+
+.othersInfo {
+  list-style: inside;
+  padding: 0;
+  margin-top: 2px;
+  font-size: 14pt;
+}
+
+.loadingDiv {
+  margin-left: 550px;
+}
+
+.loadingH1 {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 30pt;
+  font-weight: 300;
   color: #ffffff;
 }

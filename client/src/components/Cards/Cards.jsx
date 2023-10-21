@@ -28,15 +28,6 @@ export default function Cards(props) {
   const endIndex = currentPage * cardsPerPage;
   const visibleVideogames = filteredVideogames.slice(startIndex, endIndex);
 
-  React.useEffect(() => {
-    setLoading(true);
-    fetchVideogames().then(() => {
-      setLoading(false);
-    });
-    fetchGenres();
-    fetchPlatforms();
-  }, []);
-
   const videogamesList = visibleVideogames.map((videogame) => (
     <Card
       key={videogame.id}
@@ -188,13 +179,13 @@ export default function Cards(props) {
         />
       </div>
       <div>
-        {loading ? (
+        {/* {visibleVideogames ? (
           <div className={styles.loadingDiv}>
             <h1 className={styles.loadingH1}>loading cards...</h1>
-          </div>
-        ) : (
+          </div> */}
+        {/* ) : ( */}
           <div className={styles.cardList}>{videogamesList}</div>
-        )}
+        {/* )} */}
       </div>
     </div>
   );

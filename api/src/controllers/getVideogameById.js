@@ -33,6 +33,7 @@ const getVideogamesById = async (req, res) => {
           genres,
           background_image,
           description,
+          released,
         } = apiGame;
         const response = {
           id,
@@ -42,6 +43,7 @@ const getVideogamesById = async (req, res) => {
           genres,
           background_image,
           description,
+          released,
         };
         return res.status(200).json(response);
       } else {

@@ -34,6 +34,8 @@ export default function Detail() {
           platforms,
         } = data;
 
+        console.log(released);
+
         setVideogame({
           id,
           name,
@@ -53,7 +55,7 @@ export default function Detail() {
 
   function renderGenres() {
     return (
-      <ul>
+      <ul className={styles.othersInfo}>
         {videogame.genres.map((genre, index) => (
           <li key={index}>{genre.name}</li>
         ))}
@@ -63,7 +65,7 @@ export default function Detail() {
 
   function renderPlatforms() {
     return (
-      <ul>
+      <ul className={styles.othersInfo}>
         {videogame.platforms.map((platform) => (
           <li>{platform.platform.name}</li>
         ))}
@@ -77,40 +79,55 @@ export default function Detail() {
 
   return (
     <div className={styles.pageContainer}>
-      {videogame ? (
+      {videogame.name ? (
         <div className={styles.detailContainer}>
-          <div className={styles.card}>
-            <div className={styles.cardNameContainer}>
-              <h1 className={styles.cardName}>{videogame.name}</h1>
+          <div>
+            <div className={styles.card}>
+              <div className={styles.cardImageContainer}>
+                <img
+                  src={videogame.background_image}
+                  className={styles.cardImage}
+                  alt=""
+                />
+              </div>
             </div>
-            <div className={styles.cardGenreContainer}>
-              {/* <h2 className={styles.cardGenre}>{renderGenres()}</h2> */}
-            </div>
-            <div className={styles.cardImageContainer}>
-              <img
-                src={videogame.background_image}
-                className={styles.cardImage}
-              />
+            <div className={styles.idContainer}>
+              <h2>ID: {videogame.id}</h2>
             </div>
           </div>
           <div className={styles.infoContainer}>
-            <h1>ID: {videogame.id}</h1>
-            <h2>Description</h2>
+            <h1 className={styles.name}>{videogame.name}</h1>
+            <h2 className={styles.descriptionTitle}>Description</h2>
             <div
+              className={styles.description}
               dangerouslySetInnerHTML={createMarkup(videogame.description)}
             />
-            <h2>Release Date</h2>
-            {videogame.released}
-            <h2>Rating</h2>
-            {videogame.rating}
-            <h2>Genres</h2>
-            {renderGenres()}
-            <h2>Platforms</h2>
-            {renderPlatforms()}
+            <div className={styles.others}>
+              <div className={styles.othersGroup}>
+                <h2 className={styles.othersTitle}>Release Date</h2>
+                <div className={styles.othersInfo}>{videogame.released}</div>
+              </div>
+              <div className={styles.othersGroup}>
+                <h2 className={styles.othersTitle}>Rating</h2>
+                <div className={styles.othersInfo}>{videogame.rating}</div>
+              </div>
+              <div className={styles.othersGroup}>
+                <h2 className={styles.othersTitle}>Genres</h2>
+                {renderGenres()}
+              </div>
+              <div className={styles.othersGroup}>
+                <h2 className={styles.othersTitle}>Platforms</h2>
+                {renderPlatforms()}
+              </div>
+            </div>
           </div>
         </div>
       ) : (
-        <p>Loading videogame...</p>
+        <div className={styles.detailContainer}>
+          <div className={styles.loadingDiv}>
+            <h1 className={styles.loadingH1}>loading videogame...</h1>
+          </div>
+        </div>
       )}
     </div>
   );
