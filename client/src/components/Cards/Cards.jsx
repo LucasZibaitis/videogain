@@ -16,12 +16,13 @@ export default function Cards(props) {
   const filteredVideogames = useSelector((state) => state.filteredVideogames);
   const allGenres = useSelector((state) => state.allGenres);
   const [name, setName] = useState("");
-  const { fetchVideogames } = props;
+  const { fetchVideogames, isLoading } = props;
   const [nameOrder, setNameOrder] = useState("none");
   const [ratingOrder, setRatingOrder] = useState("none");
   const [genreFilter, setGenreFilter] = useState("all");
   const [sourceFilter, setSourceFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const cardsPerPage = 15;
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = currentPage * cardsPerPage;
@@ -75,7 +76,10 @@ export default function Cards(props) {
   };
 
   const handleRefresh = () => {
-    fetchVideogames();
+    setIsRefreshing(true);
+    setTimeout(() => {
+      setIsRefreshing(false);
+    }, 1000);
     setNameOrder("none");
     setRatingOrder("none");
     setName("");
@@ -178,12 +182,12 @@ export default function Cards(props) {
         />
       </div>
       <div>
-        {filteredVideogames ? (
-          <div className={styles.cardList}>{videogamesList}</div>
-        ) : (
+        {isLoading || isRefreshing ? (
           <div className={styles.loadingDiv}>
             <h1 className={styles.loadingH1}>loading cards...</h1>
           </div>
+        ) : (
+          <div className={styles.cardList}>{videogamesList}</div>
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Nav from "./components/Nav/Nav";
 import Cards from "./components/Cards/Cards";
@@ -17,6 +17,7 @@ import {
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchVideogames = async () => {
     try {
@@ -48,7 +49,9 @@ function App() {
   };
 
   useEffect(() => {
-    fetchVideogames();
+    fetchVideogames().then(() => {
+      setIsLoading(false);
+    });
     fetchPlatforms();
     fetchGenres();
     console.log("All fetch done");
@@ -61,7 +64,9 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route
           path="/home"
-          element={<Cards fetchVideogames={fetchVideogames} />}
+          element={
+            <Cards fetchVideogames={fetchVideogames} isLoading={isLoading} />
+          }
         />
         <Route
           path="/form"
