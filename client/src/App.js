@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Nav from "./components/Nav/Nav";
 import Cards from "./components/Cards/Cards";
@@ -47,6 +47,13 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    fetchVideogames();
+    fetchPlatforms();
+    fetchGenres();
+    console.log("All fetch done");
+  }, []);
+
   return (
     <div className="App">
       {location.pathname !== "/" ? <Nav /> : null}
@@ -54,13 +61,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route
           path="/home"
-          element={
-            <Cards
-              fetchVideogames={fetchVideogames}
-              fetchGenres={fetchGenres}
-              fetchPlatforms={fetchPlatforms}
-            />
-          }
+          element={<Cards fetchVideogames={fetchVideogames} />}
         />
         <Route
           path="/form"

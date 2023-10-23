@@ -77,6 +77,15 @@ export default function Detail() {
     return { __html: text };
   }
 
+  function formatDate(dateString) {
+    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      undefined,
+      options
+    );
+    return formattedDate;
+  }
+
   return (
     <div className={styles.pageContainer}>
       {videogame.name ? (
@@ -105,7 +114,9 @@ export default function Detail() {
             <div className={styles.others}>
               <div className={styles.othersGroup}>
                 <h2 className={styles.othersTitle}>Release Date</h2>
-                <div className={styles.othersInfo}>{videogame.released}</div>
+                <div className={styles.othersInfo}>
+                  {formatDate(videogame.released)}
+                </div>
               </div>
               <div className={styles.othersGroup}>
                 <h2 className={styles.othersTitle}>Rating</h2>

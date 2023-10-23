@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { validate, validatePlatforms } from "./validation";
 import styles from "./Form.module.css";
 
-export default function Form(props) {
+export default function Form() {
   const genres = useSelector((state) => state.allGenres);
   const platforms = useSelector((state) => state.allPlatforms);
   const navigate = useNavigate();

@@ -23,6 +23,9 @@ export function validate(formData) {
   if (!ratingPattern.test(formData.rating)) {
     errors.rating = "Rating must be a number o decimal";
   }
+  if (parseFloat(formData.rating) > 5) {
+    errors.rating = "Rating must be less than or equal to 5";
+  }
   return errors;
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -15,14 +15,13 @@ export default function Cards(props) {
   const dispatch = useDispatch();
   const filteredVideogames = useSelector((state) => state.filteredVideogames);
   const allGenres = useSelector((state) => state.allGenres);
-  const [name, setName] = React.useState("");
-  const { fetchVideogames, fetchPlatforms, fetchGenres } = props;
-  const [nameOrder, setNameOrder] = React.useState("none");
-  const [ratingOrder, setRatingOrder] = React.useState("none");
-  const [genreFilter, setGenreFilter] = React.useState("all");
-  const [sourceFilter, setSourceFilter] = React.useState("all");
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [loading, setLoading] = React.useState(true);
+  const [name, setName] = useState("");
+  const { fetchVideogames } = props;
+  const [nameOrder, setNameOrder] = useState("none");
+  const [ratingOrder, setRatingOrder] = useState("none");
+  const [genreFilter, setGenreFilter] = useState("all");
+  const [sourceFilter, setSourceFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 15;
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = currentPage * cardsPerPage;
@@ -179,13 +178,13 @@ export default function Cards(props) {
         />
       </div>
       <div>
-        {/* {visibleVideogames ? (
+        {filteredVideogames ? (
+          <div className={styles.cardList}>{videogamesList}</div>
+        ) : (
           <div className={styles.loadingDiv}>
             <h1 className={styles.loadingH1}>loading cards...</h1>
-          </div> */}
-        {/* ) : ( */}
-          <div className={styles.cardList}>{videogamesList}</div>
-        {/* )} */}
+          </div>
+        )}
       </div>
     </div>
   );

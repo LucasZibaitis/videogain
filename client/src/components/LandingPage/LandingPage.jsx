@@ -7,6 +7,7 @@ import styles from "./LandingPage.module.css";
 
 export default function LandingPage(props) {
   const [isHovered, setIsHovered] = React.useState(false);
+
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -14,6 +15,7 @@ export default function LandingPage(props) {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
   return (
     <div>
       <Link to="/home">

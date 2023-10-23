@@ -65,6 +65,8 @@
   margin-left: 50px;
   margin-bottom: 10px;
   font-size: 10pt;
+  width: 300px;
+  text-align: left;
 }
 
 .description {
