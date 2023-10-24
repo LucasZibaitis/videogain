@@ -171,7 +171,7 @@ export default function Form() {
             ></input>
             <p className={styles.danger}>{formSubmitted ? errors.image : ""}</p>
           </div>
-          <div className={styles.leftContainer}>
+          <div className={styles.leftContainerDescription}>
             <label>Description</label>
             <textarea
               name="description"
@@ -204,8 +204,8 @@ export default function Form() {
               </div>
             </div>
           </div>
-          <div className={styles.rightButtonContainer}>
-            <div className={styles.rightButtonColumn}>
+          <div className={styles.rightBottomContainer}>
+            <div className={styles.rightBottomColumn}>
               <div className={styles.leftContainer}>
                 <label>Release Date</label>
                 <input

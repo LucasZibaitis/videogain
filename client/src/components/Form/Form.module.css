@@ -15,7 +15,7 @@
 .formContainer {
   background-color: rgb(60, 73, 153);
   width: 1000px;
-  height: 550px;
+  height: 600px;
   border-radius: 3mm;
   border: solid 4px white;
   box-sizing: border-box;
@@ -35,7 +35,7 @@
   margin-left: 40px;
   margin-right: 40px;
   width: 380px;
-  height: 420px;
+  height: 530px;
 }
 
 .rightColumnContainer {
@@ -47,13 +47,21 @@
   margin-right: 40px;
   margin-left: 40px;
   width: 460px;
-  height: 420px;
+  height: 530px;
 }
 
 .leftContainer {
   display: flex;
   flex-direction: column;
   text-align: left;
+  height: 124.6px;
+}
+
+.leftContainerDescription {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  height: 290px;
 }
 
 .leftInput {
@@ -106,7 +114,7 @@
   border: solid white 1px;
   box-sizing: border-box;
   border-radius: 2mm;
-  max-height: 150px;
+  max-height: 165px;
   overflow-y: auto;
   width: 203px;
 }
@@ -120,7 +128,7 @@
   border: solid white 1px;
   box-sizing: border-box;
   border-radius: 2mm;
-  max-height: 150px;
+  max-height: 165px;
   overflow-y: auto;
   margin-top: 10px;
   width: 203px;
@@ -141,21 +149,31 @@
   margin-left: 5px;
 }
 
-.rightButtonColumn {
-  margin-top: 35px;
+.rightBottomContainer {
+  display: flex;
+  width: 455px;
+  height: 400px;
 }
 
-.rightButtonContainer {
+.rightBottomColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  margin-top: 7px;
+  /* border: green solid 4px; */
+}
+
+.buttonContainer {
+  width: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.buttonContainer {
-  margin-left: 120px;
-  margin-top: 135px;
-}
 
 .button {
+  margin-top: 110px;
+  margin-left: 70px;
   width: 100px;
   height: 40px;
   background-color: rgb(101, 150, 27);
@@ -165,4 +183,13 @@
   font-size: 16pt;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: rgb(81, 120, 21);
+}
+
+.button:active {
+  background-color: rgb(71, 110, 17);
 }
