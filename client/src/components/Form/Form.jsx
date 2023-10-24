@@ -112,99 +112,134 @@ export default function Form() {
 
   const selectGenres = genres.map((genre) => (
     <React.Fragment key={genre.id}>
-      <input
-        type="checkbox"
-        id={genre.name}
-        name="genre"
-        value={genre.id}
-        onChange={handleChangeGenre}
-      />
-      <label htmlFor={genre.name}>{genre.name}</label>
+      <div className={styles.checkboxOptions}>
+        <input
+          type="checkbox"
+          id={genre.name}
+          name="genre"
+          value={genre.id}
+          onChange={handleChangeGenre}
+        />
+        <label htmlFor={genre.name} className={styles.checkboxLabels}>
+          {genre.name}
+        </label>
+      </div>
     </React.Fragment>
   ));
 
   const selectPlatforms = platforms.map((platform) => (
     <React.Fragment key={platform}>
-      <input
-        type="checkbox"
-        id={platform}
-        name="platform"
-        value={platform}
-        onChange={handleChangePlatform}
-      />
-      <label htmlFor={platform}>{platform}</label>
+      <div className={styles.checkboxOptions}>
+        <input
+          type="checkbox"
+          id={platform}
+          name="platform"
+          value={platform}
+          onChange={handleChangePlatform}
+        />
+        <label htmlFor={platform} className={styles.checkboxLabels}>
+          {platform}
+        </label>
+      </div>
     </React.Fragment>
   ));
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          ></input>
-          <p className={styles.danger}>{formSubmitted ? errors.name : ""}</p>
+    <div className={styles.pageContainer}>
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <div className={styles.leftColumnContainer}>
+          <div className={styles.leftContainer}>
+            <label>Name</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className={styles.leftInput}
+            ></input>
+            <p className={styles.danger}>{formSubmitted ? errors.name : ""}</p>
+          </div>
+          <div className={styles.leftContainer}>
+            <label>Image</label>
+            <input
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              placeholder="URL"
+              className={styles.leftInput}
+            ></input>
+            <p className={styles.danger}>{formSubmitted ? errors.image : ""}</p>
+          </div>
+          <div className={styles.leftContainer}>
+            <label>Description</label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              className={styles.descriptionInput}
+            />
+            <p className={styles.danger}>
+              {formSubmitted ? errors.description : ""}
+            </p>
+          </div>
         </div>
-        <div>
-          <label>Image:</label>
-          <input
-            type="text"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            placeholder="URL"
-          ></input>
-          <p className={styles.danger}>{formSubmitted ? errors.image : ""}</p>
+        <div className={styles.rightColumnContainer}>
+          <div className={styles.checkboxContainer}>
+            <div className={styles.platformsContainer}>
+              <label>Platforms</label>
+              <div className={styles.checkboxLeftContainer}>
+                <div className={styles.checkboxLeft}>{selectPlatforms}</div>
+              </div>
+              <p className={styles.danger}>
+                {formSubmitted ? errors.platforms : ""}
+              </p>
+            </div>
+            <div className={styles.platformsContainer}>
+              <div>
+                <label className={styles.genresLabel}>Genres</label>
+                <div className={styles.checkboxRightContainer}>
+                  <div className={styles.checkboxRight}>{selectGenres}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.rightButtonContainer}>
+            <div className={styles.rightButtonColumn}>
+              <div className={styles.leftContainer}>
+                <label>Release Date</label>
+                <input
+                  type="date"
+                  name="released"
+                  value={formData.released}
+                  onChange={handleChange}
+                  className={styles.rightInput}
+                />
+                <p className={styles.danger}>
+                  {formSubmitted ? errors.released : ""}
+                </p>
+              </div>
+              <div className={styles.leftContainer}>
+                <label>Rating</label>
+                <input
+                  type="number"
+                  name="rating"
+                  value={formData.rating}
+                  onChange={handleChange}
+                  className={styles.rightInput}
+                />
+                <p className={styles.danger}>
+                  {formSubmitted ? errors.rating : ""}
+                </p>
+              </div>
+            </div>
+            <div className={styles.buttonContainer}>
+              <button type="submit" className={styles.button}>
+                Submit
+              </button>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Description:</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-          <p className={styles.danger}>
-            {formSubmitted ? errors.description : ""}
-          </p>
-        </div>
-        <div>
-          <label>Platforms:</label>
-          <div>{selectPlatforms}</div>
-          <p className={styles.danger}>
-            {formSubmitted ? errors.platforms : ""}
-          </p>
-        </div>
-        <div>
-          <label>Release Date:</label>
-          <input
-            type="date"
-            name="released"
-            value={formData.released}
-            onChange={handleChange}
-          />
-          <p className={styles.danger}>
-            {formSubmitted ? errors.released : ""}
-          </p>
-        </div>
-        <div>
-          <label>Rating:</label>
-          <input
-            type="number"
-            name="rating"
-            value={formData.rating}
-            onChange={handleChange}
-          />
-          <p className={styles.danger}>{formSubmitted ? errors.rating : ""}</p>
-        </div>
-        <div>
-          <label>Genres:</label>
-          <div>{selectGenres}</div>
-        </div>
-        <button type="submit">Create Videogame</button>
       </form>
     </div>
   );

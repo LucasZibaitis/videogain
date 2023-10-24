@@ -1,4 +1,168 @@
 .danger {
+  font-weight: bold;
   font-size: 14px;
-  color: red;
+  color: rgb(255, 238, 0);
+}
+
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.formContainer {
+  background-color: rgb(60, 73, 153);
+  width: 1000px;
+  height: 550px;
+  border-radius: 3mm;
+  border: solid 4px white;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  font-family: "Helvetica Neue", sans-serif;
+  color: #ffffff;
+  font-size: 14pt;
+}
+
+.leftColumnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  width: 380px;
+  height: 420px;
+}
+
+.rightColumnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-right: 40px;
+  margin-left: 40px;
+  width: 460px;
+  height: 420px;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.leftInput {
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 2mm;
+  width: 378px;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.descriptionInput {
+  border: 1px solid #fff;
+  border-radius: 2mm;
+  margin-top: 10px;
+  width: 378px;
+  height: 183px;
+}
+
+.rightInput {
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 2mm;
+  width: 200px;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.checkboxContainer {
+  display: flex;
+  justify-content: flex-start;
+  height: 200px;
+}
+
+.platformsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* border: solid red 4px; */
+  text-align: left;
+}
+
+.checkboxLeftContainer {
+  width: 230px;
+  /* height: 200px; */
+}
+
+.checkboxLeft {
+  margin-top: 10px;
+  border: solid white 1px;
+  box-sizing: border-box;
+  border-radius: 2mm;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 203px;
+}
+
+.checkboxRightContainer {
+  width: 230px;
+  margin-left: 15px;
+}
+
+.checkboxRight {
+  border: solid white 1px;
+  box-sizing: border-box;
+  border-radius: 2mm;
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 10px;
+  width: 203px;
+}
+
+.genresLabel {
+  margin-left: 15px;
+}
+
+.checkboxOptions {
+  display: flex;
+  font-family: "Helvetica Neue", sans-serif;
+  color: #ffffff;
+  font-size: 11pt;
+}
+
+.checkboxLabels {
+  margin-left: 5px;
+}
+
+.rightButtonColumn {
+  margin-top: 35px;
+}
+
+.rightButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonContainer {
+  margin-left: 120px;
+  margin-top: 135px;
+}
+
+.button {
+  width: 100px;
+  height: 40px;
+  background-color: rgb(101, 150, 27);
+  border-radius: 2mm;
+  border: solid white 1px;
+  color: white;
+  font-size: 16pt;
+  font-weight: bold;
+  cursor: pointer;
 }

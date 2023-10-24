@@ -76,6 +76,7 @@ export default function Cards(props) {
   };
 
   const handleRefresh = () => {
+    fetchVideogames();
     setIsRefreshing(true);
     setTimeout(() => {
       setIsRefreshing(false);
