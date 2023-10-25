@@ -6,8 +6,8 @@ import Cards from "./components/Cards/Cards";
 import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
 import { Routes, Route, useLocation } from "react-router-dom";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import axios, { all } from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setAllGenres,
   setAllPlatforms,
@@ -23,6 +23,7 @@ function App() {
     try {
       const { data } = await axios.get(`http://localhost:3001/videogames`);
       dispatch(setAllVideogames(data));
+      setIsLoading(false);
     } catch (error) {}
   };
 
@@ -49,9 +50,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchVideogames().then(() => {
-      setIsLoading(false);
-    });
+    fetchVideogames();
     fetchPlatforms();
     fetchGenres();
     console.log("All fetch done");

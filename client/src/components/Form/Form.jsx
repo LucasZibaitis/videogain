@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { validate, validatePlatforms } from "./validation";
 import styles from "./Form.module.css";
 
-export default function Form() {
+export default function Form(props) {
+  const { fetchVideogames } = props;
   const genres = useSelector((state) => state.allGenres);
   const platforms = useSelector((state) => state.allPlatforms);
   const navigate = useNavigate();
@@ -44,7 +45,6 @@ export default function Form() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setErrors(validate({ ...formData, [name]: value }));
-    console.log(formSubmitted);
   };
 
   const handleSubmit = async (e) => {
@@ -93,7 +93,6 @@ export default function Form() {
 
   const handleChangePlatform = (e) => {
     const { value, checked } = e.target;
-
     if (checked) {
       setSelectedPlatforms((prevPlatforms) => [
         ...prevPlatforms,
@@ -156,6 +155,7 @@ export default function Form() {
               value={formData.name}
               onChange={handleChange}
               className={styles.leftInput}
+              placeholder="Enter videogame name"
             ></input>
             <p className={styles.danger}>{formSubmitted ? errors.name : ""}</p>
           </div>
@@ -166,7 +166,7 @@ export default function Form() {
               name="image"
               value={formData.image}
               onChange={handleChange}
-              placeholder="URL"
+              placeholder="Enter image URL of videogame"
               className={styles.leftInput}
             ></input>
             <p className={styles.danger}>{formSubmitted ? errors.image : ""}</p>
@@ -178,6 +178,7 @@ export default function Form() {
               value={formData.description}
               onChange={handleChange}
               className={styles.descriptionInput}
+              placeholder="Enter description about the videogame"
             />
             <p className={styles.danger}>
               {formSubmitted ? errors.description : ""}
@@ -227,6 +228,7 @@ export default function Form() {
                   value={formData.rating}
                   onChange={handleChange}
                   className={styles.rightInput}
+                  placeholder="Enter videogame rating"
                 />
                 <p className={styles.danger}>
                   {formSubmitted ? errors.rating : ""}
@@ -235,7 +237,7 @@ export default function Form() {
             </div>
             <div className={styles.buttonContainer}>
               <button type="submit" className={styles.button}>
-                Submit
+                Create
               </button>
             </div>
           </div>

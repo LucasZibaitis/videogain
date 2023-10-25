@@ -75,18 +75,22 @@ export default function Cards(props) {
     setName(event.target.value);
   };
 
-  const handleRefresh = () => {
-    fetchVideogames();
+  console.log(isLoading);
+
+  const handleRefresh = async () => {
     setIsRefreshing(true);
-    setTimeout(() => {
-      setIsRefreshing(false);
-    }, 1000);
     setNameOrder("none");
     setRatingOrder("none");
     setName("");
     setGenreFilter("all");
     setSourceFilter("all");
     setCurrentPage(1);
+    try {
+      await fetchVideogames();
+      setIsRefreshing(false);
+    } catch (error) {
+      setIsRefreshing(false);
+    }
   };
 
   const genresFilter = allGenres.map((genre) => (

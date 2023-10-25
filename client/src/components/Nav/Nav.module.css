@@ -36,6 +36,14 @@
   cursor: pointer;
 }
 
+.navBarButtonActive {
+  color: rgb(60, 73, 153);
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 25pt;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+
 a,
 .navBarButtonHome,
 .navBarButtonForm,
