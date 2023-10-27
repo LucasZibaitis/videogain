@@ -18,7 +18,6 @@ export default function Form(props) {
     released: "",
     rating: "",
   });
-
   const [errors, setErrors] = useState({
     name: "",
     image: "",
@@ -27,7 +26,6 @@ export default function Form(props) {
     rating: "",
     platforms: "",
   });
-
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -39,7 +37,7 @@ export default function Form(props) {
       ...initialErrors,
       platforms: platformErrors.platforms,
     });
-  }, []);
+  }, [formData, selectedPlatforms]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +48,8 @@ export default function Form(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
-    if (Object.keys(errors).length > 0) {
+    console.log(errors);
+    if (Object.keys(errors).length > 0 && errors.platforms) {
       return;
     }
     try {
@@ -66,6 +65,9 @@ export default function Form(props) {
       window.alert(
         `The videogame: "${response.data.name}" has been created successfully`
       );
+
+      await fetchVideogames();
+
       setFormData({
         name: "",
         image: "",
@@ -155,7 +157,7 @@ export default function Form(props) {
               value={formData.name}
               onChange={handleChange}
               className={styles.leftInput}
-              placeholder="Enter videogame name"
+              placeholder="Enter the videogame name"
             ></input>
             <p className={styles.danger}>{formSubmitted ? errors.name : ""}</p>
           </div>
@@ -166,7 +168,7 @@ export default function Form(props) {
               name="image"
               value={formData.image}
               onChange={handleChange}
-              placeholder="Enter image URL of videogame"
+              placeholder="Enter the image URL of the videogame"
               className={styles.leftInput}
             ></input>
             <p className={styles.danger}>{formSubmitted ? errors.image : ""}</p>
@@ -178,7 +180,7 @@ export default function Form(props) {
               value={formData.description}
               onChange={handleChange}
               className={styles.descriptionInput}
-              placeholder="Enter description about the videogame"
+              placeholder="Enter the description about the videogame"
             />
             <p className={styles.danger}>
               {formSubmitted ? errors.description : ""}
@@ -228,7 +230,7 @@ export default function Form(props) {
                   value={formData.rating}
                   onChange={handleChange}
                   className={styles.rightInput}
-                  placeholder="Enter videogame rating"
+                  placeholder="Enter the videogame rating"
                 />
                 <p className={styles.danger}>
                   {formSubmitted ? errors.rating : ""}

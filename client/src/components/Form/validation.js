@@ -31,7 +31,7 @@ export function validate(formData) {
 
 export function validatePlatforms(selectedPlatforms) {
   const errors = {};
-  if (selectedPlatforms.length === 0) {
+  if (selectedPlatforms.length === 0 || !selectedPlatforms) {
     errors.platforms = "At least one platform is required";
   }
   return errors;
