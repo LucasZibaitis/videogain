@@ -34,8 +34,6 @@ export default function Detail() {
           platforms,
         } = data;
 
-        console.log(released);
-
         setVideogame({
           id,
           name,

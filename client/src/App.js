@@ -22,6 +22,7 @@ function App() {
   const fetchVideogames = async () => {
     try {
       const { data } = await axios.get(`http://localhost:3001/videogames`);
+      console.log("fetcheado");
       dispatch(setAllVideogames(data));
       setIsLoading(false);
     } catch (error) {}
@@ -69,8 +70,7 @@ function App() {
         />
         <Route
           path="/form"
-          element={<Form />}
-          fetchVideogames={fetchVideogames}
+          element={<Form fetchVideogames={fetchVideogames} />}
         />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>

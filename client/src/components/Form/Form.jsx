@@ -45,43 +45,6 @@ export default function Form(props) {
     setErrors(validate({ ...formData, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    console.log(errors);
-    if (Object.keys(errors).length > 0 && errors.platforms) {
-      return;
-    }
-    try {
-      const response = await axios.post("http://localhost:3001/videogames", {
-        name: formData.name,
-        background_image: formData.image,
-        description: formData.description,
-        platforms: selectedPlatforms,
-        released: formData.released,
-        rating: formData.rating,
-        genres: selectedGenres,
-      });
-      window.alert(
-        `The videogame: "${response.data.name}" has been created successfully`
-      );
-
-      await fetchVideogames();
-
-      setFormData({
-        name: "",
-        image: "",
-        description: "",
-        released: "",
-        rating: "",
-      });
-      setFormSubmitted(false);
-      navigate("/home");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const handleChangeGenre = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -109,6 +72,34 @@ export default function Form(props) {
     }
     const platformErrors = validatePlatforms(selectedPlatforms);
     setErrors({ ...errors, platforms: platformErrors.platforms });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    if (Object.keys(errors).length > 0 && errors.platforms) {
+      return;
+    }
+    try {
+      await axios.post("http://localhost:3001/videogames", {
+        name: formData.name,
+        background_image: formData.image,
+        description: formData.description,
+        platforms: selectedPlatforms,
+        released: formData.released,
+        rating: formData.rating,
+        genres: selectedGenres,
+      });
+      setFormData({
+        name: "",
+        image: "",
+        description: "",
+        released: "",
+        rating: "",
+      });
+      fetchVideogames();
+      navigate("/home");
+    } catch (error) {}
   };
 
   const selectGenres = genres.map((genre) => (

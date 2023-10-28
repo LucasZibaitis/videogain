@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Card from "../Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -74,8 +74,6 @@ export default function Cards(props) {
   const handleChange = (event) => {
     setName(event.target.value);
   };
-
-  console.log(isLoading);
 
   const handleRefresh = async () => {
     setIsRefreshing(true);

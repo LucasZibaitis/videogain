@@ -14,6 +14,7 @@ const initialState = {
   filteredVideogames: [],
   allGenres: [],
   allPlatforms: [],
+  dbVideogames: [],
 };
 
 const rootReducer = (state = initialState, action) => {
