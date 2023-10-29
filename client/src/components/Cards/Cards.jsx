@@ -13,12 +13,12 @@ import Arrow from "./Arrow.png";
 import styles from "./Cards.module.css";
 
 export default function Cards(props) {
+  const { fetchVideogames } = props;
   const dispatch = useDispatch();
   const filteredVideogames = useSelector((state) => state.filteredVideogames);
   const allGenres = useSelector((state) => state.allGenres);
   const isLoading = useSelector((state) => state.isLoading);
   const [name, setName] = useState("");
-  const { fetchVideogames } = props;
   const [nameOrder, setNameOrder] = useState("none");
   const [ratingOrder, setRatingOrder] = useState("none");
   const [genreFilter, setGenreFilter] = useState("all");

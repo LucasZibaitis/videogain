@@ -102,8 +102,8 @@ export default function Form(props) {
         rating: "",
       });
       dispatch(setIsLoading(true));
-      fetchVideogames();
-      // navigate("/home");
+      await fetchVideogames();
+      navigate("/home");
     } catch (error) {}
   };
 
