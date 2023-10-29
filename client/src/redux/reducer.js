@@ -7,6 +7,7 @@ import {
   SET_VIDEOGAMES_BY_NAME,
   SET_ALL_GENRES,
   SET_ALL_PLATFORMS,
+  SET_IS_LOADING,
 } from "./actions";
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
   filteredVideogames: [],
   allGenres: [],
   allPlatforms: [],
-  dbVideogames: [],
+  isLoading: true,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -108,6 +109,8 @@ const rootReducer = (state = initialState, action) => {
         );
         return { ...state, filteredVideogames: filteredVideogamesBySource };
       }
+    case SET_IS_LOADING:
+      return { ...state, isLoading: action.payload };
     default:
       return state;
   }

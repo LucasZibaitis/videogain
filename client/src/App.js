@@ -12,19 +12,18 @@ import {
   setAllGenres,
   setAllPlatforms,
   setAllVideogames,
+  setIsLoading,
 } from "./redux/actions";
 
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
 
   const fetchVideogames = async () => {
     try {
       const { data } = await axios.get(`http://localhost:3001/videogames`);
-      console.log("fetcheado");
       dispatch(setAllVideogames(data));
-      setIsLoading(false);
+      dispatch(setIsLoading(false));
     } catch (error) {}
   };
 
@@ -54,7 +53,6 @@ function App() {
     fetchVideogames();
     fetchPlatforms();
     fetchGenres();
-    console.log("All fetch done");
   }, []);
 
   return (
@@ -64,9 +62,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route
           path="/home"
-          element={
-            <Cards fetchVideogames={fetchVideogames} isLoading={isLoading} />
-          }
+          element={<Cards fetchVideogames={fetchVideogames} />}
         />
         <Route
           path="/form"

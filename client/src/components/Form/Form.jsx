@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { validate, validatePlatforms } from "./validation";
+import { setIsLoading } from "../../redux/actions";
 import styles from "./Form.module.css";
 
 export default function Form(props) {
@@ -10,6 +11,7 @@ export default function Form(props) {
   const genres = useSelector((state) => state.allGenres);
   const platforms = useSelector((state) => state.allPlatforms);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -29,6 +31,7 @@ export default function Form(props) {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
 
   React.useEffect(() => {
     const initialErrors = validate(formData);
@@ -90,6 +93,7 @@ export default function Form(props) {
         rating: formData.rating,
         genres: selectedGenres,
       });
+      setFormSuccess(true);
       setFormData({
         name: "",
         image: "",
@@ -97,8 +101,9 @@ export default function Form(props) {
         released: "",
         rating: "",
       });
+      dispatch(setIsLoading(true));
       fetchVideogames();
-      navigate("/home");
+      // navigate("/home");
     } catch (error) {}
   };
 
@@ -138,104 +143,116 @@ export default function Form(props) {
 
   return (
     <div className={styles.pageContainer}>
-      <form onSubmit={handleSubmit} className={styles.formContainer}>
-        <div className={styles.leftColumnContainer}>
-          <div className={styles.leftContainer}>
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={styles.leftInput}
-              placeholder="Enter the videogame name"
-            ></input>
-            <p className={styles.danger}>{formSubmitted ? errors.name : ""}</p>
-          </div>
-          <div className={styles.leftContainer}>
-            <label>Image</label>
-            <input
-              type="text"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              placeholder="Enter the image URL of the videogame"
-              className={styles.leftInput}
-            ></input>
-            <p className={styles.danger}>{formSubmitted ? errors.image : ""}</p>
-          </div>
-          <div className={styles.leftContainerDescription}>
-            <label>Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className={styles.descriptionInput}
-              placeholder="Enter the description about the videogame"
-            />
-            <p className={styles.danger}>
-              {formSubmitted ? errors.description : ""}
-            </p>
-          </div>
+      {formSuccess ? (
+        <div className={styles.successContainer}>
+          <h1 className={styles.successMessage}>
+            Videogame created successfully
+          </h1>
         </div>
-        <div className={styles.rightColumnContainer}>
-          <div className={styles.checkboxContainer}>
-            <div className={styles.platformsContainer}>
-              <label>Platforms</label>
-              <div className={styles.checkboxLeftContainer}>
-                <div className={styles.checkboxLeft}>{selectPlatforms}</div>
-              </div>
+      ) : (
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
+          <div className={styles.leftColumnContainer}>
+            <div className={styles.leftContainer}>
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={styles.leftInput}
+                placeholder="Enter the videogame name"
+              ></input>
               <p className={styles.danger}>
-                {formSubmitted ? errors.platforms : ""}
+                {formSubmitted ? errors.name : ""}
               </p>
             </div>
-            <div className={styles.platformsContainer}>
-              <div>
-                <label className={styles.genresLabel}>Genres</label>
-                <div className={styles.checkboxRightContainer}>
-                  <div className={styles.checkboxRight}>{selectGenres}</div>
+            <div className={styles.leftContainer}>
+              <label>Image</label>
+              <input
+                type="text"
+                name="image"
+                value={formData.image}
+                onChange={handleChange}
+                placeholder="Enter the image URL of the videogame"
+                className={styles.leftInput}
+              ></input>
+              <p className={styles.danger}>
+                {formSubmitted ? errors.image : ""}
+              </p>
+            </div>
+            <div className={styles.leftContainerDescription}>
+              <label>Description</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                className={styles.descriptionInput}
+                placeholder="Enter the description about the videogame"
+              />
+              <p className={styles.danger}>
+                {formSubmitted ? errors.description : ""}
+              </p>
+            </div>
+          </div>
+          <div className={styles.rightColumnContainer}>
+            <div className={styles.checkboxContainer}>
+              <div className={styles.platformsContainer}>
+                <label>Platforms</label>
+                <div className={styles.checkboxLeftContainer}>
+                  <div className={styles.checkboxLeft}>{selectPlatforms}</div>
+                </div>
+                <p className={styles.danger}>
+                  {formSubmitted ? errors.platforms : ""}
+                </p>
+              </div>
+              <div className={styles.platformsContainer}>
+                <div>
+                  <label className={styles.genresLabel}>Genres</label>
+                  <div className={styles.checkboxRightContainer}>
+                    <div className={styles.checkboxRight}>{selectGenres}</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className={styles.rightBottomContainer}>
-            <div className={styles.rightBottomColumn}>
-              <div className={styles.leftContainer}>
-                <label>Release Date</label>
-                <input
-                  type="date"
-                  name="released"
-                  value={formData.released}
-                  onChange={handleChange}
-                  className={styles.rightInput}
-                />
-                <p className={styles.danger}>
-                  {formSubmitted ? errors.released : ""}
-                </p>
+            <div className={styles.rightBottomContainer}>
+              <div className={styles.rightBottomColumn}>
+                <div className={styles.leftContainer}>
+                  <label>Release Date</label>
+                  <input
+                    type="date"
+                    name="released"
+                    value={formData.released}
+                    onChange={handleChange}
+                    className={styles.rightInput}
+                  />
+                  <p className={styles.danger}>
+                    {formSubmitted ? errors.released : ""}
+                  </p>
+                </div>
+                <div className={styles.leftContainer}>
+                  <label>Rating</label>
+                  <input
+                    type="number"
+                    name="rating"
+                    value={formData.rating}
+                    onChange={handleChange}
+                    className={styles.rightInput}
+                    placeholder="Enter the videogame rating"
+                  />
+                  <p className={styles.danger}>
+                    {formSubmitted ? errors.rating : ""}
+                  </p>
+                </div>
               </div>
-              <div className={styles.leftContainer}>
-                <label>Rating</label>
-                <input
-                  type="number"
-                  name="rating"
-                  value={formData.rating}
-                  onChange={handleChange}
-                  className={styles.rightInput}
-                  placeholder="Enter the videogame rating"
-                />
-                <p className={styles.danger}>
-                  {formSubmitted ? errors.rating : ""}
-                </p>
+              <div className={styles.buttonContainer}>
+                <button type="submit" className={styles.button}>
+                  Create
+                </button>
               </div>
             </div>
-            <div className={styles.buttonContainer}>
-              <button type="submit" className={styles.button}>
-                Create
-              </button>
-            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      )}
     </div>
   );
 }

@@ -193,3 +193,22 @@
 .button:active {
   background-color: rgb(71, 110, 17);
 }
+
+.successContainer {
+  background-color: rgb(60, 73, 153);
+  width: 1000px;
+  height: 600px;
+  border-radius: 3mm;
+  border: solid 4px white;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.successMessage {
+  font-family: "Helvetica Neue", sans-serif;
+  color: rgb(174, 234, 89);
+  font-weight: 300;
+  font-size: 30pt;
+}

@@ -7,6 +7,7 @@ import {
   filterCardsBySource,
   orderCardsByName,
   setVideogamesByName,
+  setIsLoading,
 } from "../../redux/actions";
 import Arrow from "./Arrow.png";
 import styles from "./Cards.module.css";
@@ -15,14 +16,14 @@ export default function Cards(props) {
   const dispatch = useDispatch();
   const filteredVideogames = useSelector((state) => state.filteredVideogames);
   const allGenres = useSelector((state) => state.allGenres);
+  const isLoading = useSelector((state) => state.isLoading);
   const [name, setName] = useState("");
-  const { fetchVideogames, isLoading } = props;
+  const { fetchVideogames } = props;
   const [nameOrder, setNameOrder] = useState("none");
   const [ratingOrder, setRatingOrder] = useState("none");
   const [genreFilter, setGenreFilter] = useState("all");
   const [sourceFilter, setSourceFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const cardsPerPage = 15;
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = currentPage * cardsPerPage;
@@ -76,7 +77,7 @@ export default function Cards(props) {
   };
 
   const handleRefresh = async () => {
-    setIsRefreshing(true);
+    dispatch(setIsLoading(true));
     setNameOrder("none");
     setRatingOrder("none");
     setName("");
@@ -85,10 +86,7 @@ export default function Cards(props) {
     setCurrentPage(1);
     try {
       await fetchVideogames();
-      setIsRefreshing(false);
-    } catch (error) {
-      setIsRefreshing(false);
-    }
+    } catch (error) {}
   };
 
   const genresFilter = allGenres.map((genre) => (
@@ -185,7 +183,7 @@ export default function Cards(props) {
         />
       </div>
       <div>
-        {isLoading || isRefreshing ? (
+        {isLoading ? (
           <div className={styles.loadingDiv}>
             <h1 className={styles.loadingH1}>loading cards...</h1>
           </div>

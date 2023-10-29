@@ -7,6 +7,7 @@ export const SET_ALL_VIDEOGAMES = "SET_ALL_VIDEOGAMES";
 export const SET_VIDEOGAMES_BY_NAME = "SET_VIDEOGAMES_BY_NAME";
 export const SET_ALL_GENRES = "SET_ALL_GENRES";
 export const SET_ALL_PLATFORMS = "SET_ALL_PLATFORMS";
+export const SET_IS_LOADING = "SET_IS_LOADING";
 
 export const setAllVideogames = (videogames) => ({
   type: SET_ALL_VIDEOGAMES,
@@ -51,4 +52,8 @@ export const filterCardsByGenre = (genre) => {
 
 export const filterCardsBySource = (source) => {
   return { type: FILTER_BY_SOURCE, payload: source };
+};
+
+export const setIsLoading = (status) => {
+  return { type: SET_IS_LOADING, payload: status };
 };
