@@ -15,7 +15,7 @@ export const setAllVideogames = (videogames) => ({
 });
 
 export const setVideogamesByName = (name) => {
-  const endpoint = `http://localhost:3001/videogames/name?name=${name}`;
+  const endpoint = `https://pi-videogames-back-a5zj.onrender.com/videogames/name?name=${name}`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);

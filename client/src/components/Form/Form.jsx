@@ -84,15 +84,18 @@ export default function Form(props) {
       return;
     }
     try {
-      await axios.post("http://localhost:3001/videogames", {
-        name: formData.name,
-        background_image: formData.image,
-        description: formData.description,
-        platforms: selectedPlatforms,
-        released: formData.released,
-        rating: formData.rating,
-        genres: selectedGenres,
-      });
+      await axios.post(
+        "https://pi-videogames-back-a5zj.onrender.com/videogames",
+        {
+          name: formData.name,
+          background_image: formData.image,
+          description: formData.description,
+          platforms: selectedPlatforms,
+          released: formData.released,
+          rating: formData.rating,
+          genres: selectedGenres,
+        }
+      );
       setFormSuccess(true);
       setFormData({
         name: "",

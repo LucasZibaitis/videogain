@@ -21,7 +21,7 @@ export default function Detail() {
     async function fetchVideogame() {
       try {
         const response = await axios.get(
-          `http://localhost:3001/videogames/videogame/${id}`
+          `https://pi-videogames-back-a5zj.onrender.com/videogames/videogame/${id}`
         );
         const data = response.data;
         const {

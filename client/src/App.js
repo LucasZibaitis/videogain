@@ -21,7 +21,9 @@ function App() {
 
   const fetchVideogames = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/videogames`);
+      const { data } = await axios.get(
+        `https://pi-videogames-back-a5zj.onrender.com/videogames`
+      );
       dispatch(setAllVideogames(data));
       dispatch(setIsLoading(false));
     } catch (error) {}
@@ -30,7 +32,7 @@ function App() {
   const fetchGenres = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/videogames/genres"
+        "https://pi-videogames-back-a5zj.onrender.com/videogames/genres"
       );
       dispatch(setAllGenres(response.data));
     } catch (error) {
@@ -41,7 +43,7 @@ function App() {
   const fetchPlatforms = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/videogames/platforms"
+        "https://pi-videogames-back-a5zj.onrender.com/videogames/platforms"
       );
       dispatch(setAllPlatforms(response.data));
     } catch (error) {
