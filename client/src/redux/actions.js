@@ -19,6 +19,7 @@ export const setVideogamesByName = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
+      dispatch(setIsLoading(false));
       return dispatch({
         type: SET_VIDEOGAMES_BY_NAME,
         payload: data,

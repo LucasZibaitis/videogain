@@ -145,3 +145,16 @@
   font-weight: lighter;
   color: #ffffff;
 }
+
+.errorDiv {
+  margin-left: 475px;
+  margin-top: 175px;
+}
+
+.errorH1 {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 30pt;
+  font-weight: lighter;
+  color: #ffffff;
+  white-space: nowrap;
+}

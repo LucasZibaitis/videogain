@@ -67,6 +67,7 @@ export default function Cards(props) {
   };
 
   const handleSearch = () => {
+    dispatch(setIsLoading(true));
     dispatch(setVideogamesByName(name));
     setNameOrder("none");
     setRatingOrder("none");
@@ -188,7 +189,15 @@ export default function Cards(props) {
             <h1 className={styles.loadingH1}>loading cards...</h1>
           </div>
         ) : (
-          <div className={styles.cardList}>{videogamesList}</div>
+          <div className={styles.cardList}>
+            {filteredVideogames.length === 0 ? (
+              <div className={styles.errorDiv}>
+                <h1 className={styles.errorH1}>no videogames were found</h1>
+              </div>
+            ) : (
+              videogamesList
+            )}
+          </div>
         )}
       </div>
     </div>
