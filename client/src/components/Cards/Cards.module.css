@@ -1,9 +1,8 @@
-.cardList {
+/* .cardList {
   margin-top: 100px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 50px;
-  /* padding: 20px; */
   margin-right: 70px;
   margin-left: 70px;
 }
@@ -52,11 +51,11 @@
   align-items: center;
   margin-left: 1290px;
   margin-top: -91px;
-  width: 150px; /* Ancho */
-  height: 30px; /* Alto */
-  background: transparent; /* Sin color de fondo */
-  border: 1px solid #fff; /* Borde blanco fino */
-  border-radius: 2mm; /* Bordes redondeados de 2mm */
+  width: 150px;
+  height: 30px; 
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 2mm;
   cursor: pointer;
   position: relative;
   color: #ffffff;
@@ -76,8 +75,8 @@
 .selectorButton {
   text-align: center;
   background: transparent;
-  border: 1px solid #fff; /* Borde blanco fino */
-  border-radius: 2mm; /* Bordes redondeados de 2mm */
+  border: 1px solid #fff; 
+  border-radius: 2mm;
   height: 30px;
   width: 270px;
   margin: 0 50px;
@@ -142,7 +141,7 @@
 .loadingH1 {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 30pt;
-  font-weight: lighter;
+  font-weight: Bolder;
   color: #ffffff;
 }
 
@@ -154,7 +153,170 @@
 .errorH1 {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 30pt;
-  font-weight: lighter;
+  font-weight: Bolder;
   color: #ffffff;
   white-space: nowrap;
+} */
+
+@media screen and (min-width: 1920px) {
+  body {
+    overflow-y: scroll;
+  }
+  .cardList {
+    margin-top: 130px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 100px;
+    margin-right: 70px;
+    margin-left: 70px;
+    margin-bottom: 100px;
+  }
+
+  .searchInput {
+    margin-right: 800px;
+    margin-top: 30px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 2mm;
+    width: 300px;
+    height: 29px;
+  }
+
+  .searchButtonFrame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 680px;
+    margin-top: -33px;
+    width: 220px;
+    height: 31px;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 2mm;
+    cursor: pointer;
+    position: relative;
+    color: #ffffff;
+    font-family: "HelveticaNeue-Bold", "HelveticaNeue Bold", "HelveticaNeue";
+    font-size: 16pt;
+    transition: color 0.3s;
+  }
+
+  .searchButtonFrame:hover {
+    color: rgb(60, 73, 153);
+  }
+
+  .refreshButtonFrame:hover {
+    color: rgb(60, 73, 153);
+  }
+
+  .refreshButtonFrame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1490px;
+    margin-top: -91px;
+    width: 150px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 2mm;
+    cursor: pointer;
+    position: relative;
+    color: #ffffff;
+    font-family: "HelveticaNeue-Bold", "HelveticaNeue Bold", "HelveticaNeue";
+    font-size: 16pt;
+    transition: color 0.3s;
+  }
+
+  .filterContainer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .selectorButton {
+    text-align: center;
+    background: transparent;
+    border: 1px solid #fff; /* Borde blanco fino */
+    border-radius: 2mm; /* Bordes redondeados de 2mm */
+    height: 30px;
+    width: 270px;
+    margin: 0 50px;
+    font-family: "HelveticaNeue-Bold", "HelveticaNeue Bold", "HelveticaNeue";
+    font-size: 14pt;
+    color: #ffffff;
+    transition: background-color 0.3s;
+    transition: border 0.3s;
+    cursor: pointer;
+  }
+
+  .selectorButton:hover {
+    background-color: rgb(60, 73, 153);
+    border: 1px solid rgb(60, 73, 153);
+  }
+
+  .paginationContainer {
+    width: 600px;
+    margin-left: 700px;
+    margin-top: -50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .arrowLeft {
+    cursor: pointer;
+    height: 27px;
+    margin-left: 370px;
+    margin-top: 4px;
+    transition: transform 0.3s;
+  }
+
+  .arrowLeft:hover {
+    transform: scale(1.2);
+  }
+
+  .arrowRight {
+    cursor: pointer;
+    transform: rotate(180deg);
+    height: 27px;
+    margin-right: 30px;
+    margin-top: 4px;
+    transition: transform 0.3s;
+  }
+
+  .arrowRight:hover {
+    transform: rotate(180deg) scale(1.2);
+  }
+
+  .paginationPage {
+    font-family: "HelveticaNeue-Bold", "HelveticaNeue Bold", "HelveticaNeue";
+    font-size: 16pt;
+    color: #ffffff;
+  }
+
+  .loadingDiv {
+    margin-top: 300px;
+  }
+
+  .loadingH1 {
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    font-size: 30pt;
+    font-weight: lighter;
+    color: #ffffff;
+  }
+
+  .errorDiv {
+    margin-left: 675px;
+    margin-top: 140px;
+  }
+
+  .errorH1 {
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    font-size: 30pt;
+    font-weight: lighter;
+    color: #ffffff;
+    white-space: nowrap;
+  }
 }

@@ -1,4 +1,4 @@
-.card {
+/* .card {
   background-color: rgb(60, 73, 153);
   border: 4px solid white;
   border-radius: 3mm;
@@ -6,7 +6,6 @@
   width: 300px;
   transition: box-shadow 0.3s;
   display: flex;
-  /* flex-direction: column; */
   overflow: hidden;
   margin-top: 30px;
   margin-left: 50px;
@@ -91,7 +90,7 @@
 }
 
 .othersGroup:last-child {
-  margin-right: 0; /* Elimina el margen derecho del último grupo */
+  margin-right: 0;
 }
 
 .othersTitle {
@@ -115,4 +114,124 @@
   font-size: 30pt;
   font-weight: 300;
   color: #ffffff;
+} */
+
+@media screen and (min-width: 1920px) {
+  .card {
+    background-color: rgb(60, 73, 153);
+    border: 4px solid white;
+    border-radius: 3mm;
+    height: 400px;
+    width: 300px;
+    transition: box-shadow 0.3s;
+    display: flex;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-left: 50px;
+  }
+  .cardImageContainer {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cardImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .detailContainer {
+    background-color: rgb(60, 73, 153);
+    width: 1380px;
+    border-radius: 3mm;
+    border: solid 4px white;
+    display: flex;
+  }
+
+  .infoContainer {
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: right;
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    color: #ffffff;
+  }
+
+  .name {
+    font-size: 30pt;
+    margin-bottom: -10px;
+  }
+
+  .idContainer {
+    color: #fff;
+    display: flex;
+    justify-content: left;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    font-size: 10pt;
+    width: 300px;
+    text-align: left;
+  }
+
+  .description {
+    text-align: left;
+    max-height: 235px;
+    overflow: auto;
+  }
+
+  .descriptionTitle {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  .others {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    margin-top: -30px;
+  }
+  .othersGroup {
+    margin-right: 130px;
+  }
+
+  .othersGroup:last-child {
+    margin-right: 0;
+  }
+
+  .othersTitle {
+    margin-top: 60px;
+    margin-bottom: 3px;
+  }
+
+  .othersInfo {
+    list-style: inside;
+    padding: 0;
+    margin-top: 2px;
+    font-size: 14pt;
+  }
+
+  .loadingDiv {
+    margin-left: 550px;
+  }
+
+  .loadingH1 {
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    font-size: 30pt;
+    font-weight: lighter;
+    color: #ffffff;
+  }
 }

@@ -1,4 +1,4 @@
-.card {
+/* .card {
   background-color: rgb(60, 73, 153);
   border: 4px solid white;
   border-radius: 3mm;
@@ -74,4 +74,84 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
+} */
+
+@media screen and (min-width: 1920px) {
+  .card {
+    background-color: rgb(60, 73, 153);
+    border: 4px solid white;
+    border-radius: 3mm;
+    height: 350px;
+    transition: box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.6);
+  }
+
+  .cardLink {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .cardNameContainer {
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    align-items: start;
+    justify-content: left;
+    text-align: left;
+    height: 145px;
+  }
+
+  .cardName {
+    color: #ffffff;
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    font-size: 18pt;
+    line-height: 1.2;
+  }
+
+  .cardGenreContainer {
+    background-color: grey;
+    border: 4px solid white;
+    border-bottom-left-radius: 4mm;
+    border-bottom-right-radius: 4mm;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    margin-left: -4px;
+    margin-right: -4px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .cardGenre {
+    color: #ffffff;
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    font-style: italic;
+    font-size: 18pt;
+    font-weight: lighter;
+    text-align: left;
+    text-transform: lowercase;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .cardImageContainer {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin-top: -20px;
+  }
+
+  .cardImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
 }
