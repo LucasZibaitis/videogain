@@ -31,7 +31,7 @@ export default function Form(props) {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(true);
+  const [formSuccess, setFormSuccess] = useState(false);
 
   React.useEffect(() => {
     const initialErrors = validate(formData);
