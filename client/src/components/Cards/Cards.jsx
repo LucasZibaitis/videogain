@@ -95,6 +95,7 @@ export default function Cards(props) {
   ));
 
   const handleFilterByGenre = (e) => {
+    setCurrentPage(1);
     const selectedFilter = e.target.value;
     dispatch(filterCardsByGenre(selectedFilter));
     setGenreFilter(selectedFilter);
@@ -102,6 +103,7 @@ export default function Cards(props) {
   };
 
   const handleFilterBySource = (e) => {
+    setCurrentPage(1);
     const selectedFilter = e.target.value;
     dispatch(filterCardsBySource(selectedFilter));
     setSourceFilter(selectedFilter);

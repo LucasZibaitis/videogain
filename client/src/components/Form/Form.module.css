@@ -1,4 +1,4 @@
-/* .danger {
+.danger {
   font-weight: bold;
   font-size: 14px;
   color: rgb(255, 238, 0);
@@ -208,9 +208,9 @@
   color: rgb(174, 234, 89);
   font-weight: 300;
   font-size: 30pt;
-} */
+}
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1920px) and (max-width: 2000px) {
   .danger {
     font-weight: bold;
     font-size: 14px;
