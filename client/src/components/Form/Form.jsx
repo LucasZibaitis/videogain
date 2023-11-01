@@ -31,7 +31,7 @@ export default function Form(props) {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(true);
 
   React.useEffect(() => {
     const initialErrors = validate(formData);
@@ -148,9 +148,12 @@ export default function Form(props) {
     <div className={styles.pageContainer}>
       {formSuccess ? (
         <div className={styles.successContainer}>
-          <h1 className={styles.successMessage}>
+          <h1 className={styles.successMessageH1}>
             Videogame created successfully
           </h1>
+          <p className={styles.successMessageP}>
+            you will be redirected to the home in a few seconds...
+          </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className={styles.formContainer}>
