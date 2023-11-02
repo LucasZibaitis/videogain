@@ -5,6 +5,8 @@ import axios from "axios";
 import styles from "./Detail.module.css";
 
 export default function Detail() {
+  const uuidv4Pattern =
+    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
   const { id } = useParams();
   const [videogame, setVideogame] = useState({
     id: id,
@@ -16,6 +18,7 @@ export default function Detail() {
     genres: [],
     platforms: [],
   });
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 
   useEffect(() => {
     async function fetchVideogame() {
@@ -84,9 +87,44 @@ export default function Detail() {
     return formattedDate;
   }
 
+  async function deleteVideogame() {
+    try {
+      await axios.delete(
+        `https://pi-videogames-back-a5zj.onrender.com/videogames/videogame/${id}`
+      );
+      window.alert("Videogame deleted");
+    } catch (error) {
+      window.alert("Videogame could not be deleted");
+    }
+  }
+
   return (
     <div className={styles.pageContainer}>
-      {videogame.name ? (
+      {deleteConfirmation ? (
+        <div className={styles.deleteContainer}>
+          <h1 className={styles.question}>
+            Are you sure you want to delete this videogame?
+          </h1>
+          <div className={styles.responseContainer}>
+            <div
+              className={styles.responseYes}
+              onClick={() => {
+                deleteVideogame();
+              }}
+            >
+              <h2 className={styles.response}>Yes</h2>
+            </div>
+            <div
+              className={styles.responseNo}
+              onClick={() => {
+                setDeleteConfirmation(false);
+              }}
+            >
+              <h2 className={styles.response}>No</h2>
+            </div>
+          </div>
+        </div>
+      ) : videogame.name ? (
         <div className={styles.detailContainer}>
           <div>
             <div className={styles.card}>
@@ -100,6 +138,16 @@ export default function Detail() {
             </div>
             <div className={styles.idContainer}>
               <h2>ID: {videogame.id}</h2>
+              {uuidv4Pattern.test(videogame.id) ? (
+                <div
+                  className={styles.deleteDiv}
+                  onClick={() => {
+                    setDeleteConfirmation(true);
+                  }}
+                >
+                  <h2 className={styles.deleteH2}>Delete from database</h2>
+                </div>
+              ) : null}
             </div>
           </div>
           <div className={styles.infoContainer}>

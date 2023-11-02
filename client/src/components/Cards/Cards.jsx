@@ -53,6 +53,7 @@ export default function Cards(props) {
   };
 
   const handleOrderByName = (e) => {
+    setCurrentPage(1);
     const selectedOrder = e.target.value;
     dispatch(orderCardsByName(selectedOrder));
     setNameOrder(selectedOrder);
@@ -60,6 +61,7 @@ export default function Cards(props) {
   };
 
   const handleOrderByRating = (e) => {
+    setCurrentPage(1);
     const selectedOrder = e.target.value;
     dispatch(orderCardsByRating(selectedOrder));
     setRatingOrder(selectedOrder);
@@ -69,6 +71,7 @@ export default function Cards(props) {
   const handleSearch = () => {
     dispatch(setIsLoading(true));
     dispatch(setVideogamesByName(name));
+    setCurrentPage(1);
     setNameOrder("none");
     setRatingOrder("none");
   };

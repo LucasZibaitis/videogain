@@ -5,6 +5,9 @@ export function validate(formData) {
   if (!formData.name) {
     errors.name = "Name is required";
   }
+  if (formData.name.length > 255) {
+    errors.name = "Name must be 255 characters or less";
+  }
   if (!formData.image) {
     errors.image = "Image is required";
   }

@@ -5,7 +5,7 @@ const getVideogamesByName = require("../controllers/getVideogamesByName");
 const postVideogame = require("../controllers/postVideogame");
 const getGenres = require("../controllers/getGenres");
 const getPlatforms = require("../controllers/getPlatforms");
-
+const deleteVideogame = require("../controllers/deleteVideogame");
 const router = Router();
 
 router.get("/videogames", getVideogames);
@@ -19,5 +19,7 @@ router.post("/videogames", postVideogame);
 router.get("/videogames/genres", getGenres);
 
 router.get("/videogames/platforms", getPlatforms);
+
+router.delete("/videogames/videogame/:id", deleteVideogame);
 
 module.exports = router;
