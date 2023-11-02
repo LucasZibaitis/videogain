@@ -84,6 +84,7 @@ export default function Form(props) {
       return;
     }
     try {
+      setFormSuccess(true);
       await axios.post(
         "https://pi-videogames-back-a5zj.onrender.com/videogames",
         {
@@ -96,7 +97,6 @@ export default function Form(props) {
           genres: selectedGenres,
         }
       );
-      setFormSuccess(true);
       setFormData({
         name: "",
         image: "",
