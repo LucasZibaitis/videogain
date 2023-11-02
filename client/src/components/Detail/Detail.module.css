@@ -144,22 +144,26 @@
 .deleteContainer {
   background-color: rgb(60, 73, 153);
   width: 1380px;
+  height: 200px;
   border-radius: 3mm;
   border: solid 4px white;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .question {
   font-family: "Helvetica Neue", sans-serif;
   color: #ffffff;
   font-weight: 300;
+  margin-bottom: 40px;
 }
 .responseContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 .responseYes {
   display: flex;
@@ -352,22 +356,26 @@
   .deleteContainer {
     background-color: rgb(60, 73, 153);
     width: 1380px;
+    height: 200px;
     border-radius: 3mm;
     border: solid 4px white;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .question {
     font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
     color: #ffffff;
     font-weight: 300;
+    margin-bottom: 40px;
   }
   .responseContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   .responseYes {
     display: flex;
