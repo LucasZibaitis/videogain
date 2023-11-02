@@ -3,7 +3,7 @@ const { Videogame } = require("../db");
 const deleteVideogame = async (req, res) => {
   const { id } = req.params;
   try {
-    const videogame = Videogame.findByPk(id);
+    const videogame = await Videogame.findByPk(id);
     if (!videogame) {
       return res.status(404).json({ error: "Videogame not found" });
     }
