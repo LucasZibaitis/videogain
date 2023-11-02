@@ -193,6 +193,20 @@
   filter: brightness(110%);
 }
 
+.successMessageH1 {
+  font-family: "Helvetica Neue", sans-serif;
+  color: rgb(174, 234, 89);
+  font-weight: 300;
+  font-size: 36pt;
+}
+.successMessageP {
+  font-family: "Helvetica Neue", sans-serif;
+  color: rgb(174, 234, 89);
+  font-weight: 300;
+  font-size: 18pt;
+  margin-top: -25px;
+}
+
 @media screen and (min-width: 1920px) and (max-width: 2000px) {
   .card {
     background-color: rgb(60, 73, 153);
@@ -310,5 +324,94 @@
     font-size: 30pt;
     font-weight: lighter;
     color: #ffffff;
+  }
+  .deleteDiv {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 24, 24);
+    border-radius: 2mm;
+    border: solid white 2px;
+    text-align: center;
+    transition: border 0.3s;
+    margin-bottom: 20px;
+  }
+
+  .deleteDiv:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border: solid rgb(255, 24, 24) 2px;
+  }
+
+  .deleteH2 {
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+  }
+
+  .deleteContainer {
+    background-color: rgb(60, 73, 153);
+    width: 1380px;
+    border-radius: 3mm;
+    border: solid 4px white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question {
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    color: #ffffff;
+    font-weight: 300;
+  }
+  .responseContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  .responseYes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2mm;
+    border: solid white 1px;
+    width: 100px;
+    height: 30px;
+    margin-right: 100px;
+    cursor: pointer;
+  }
+  .responseNo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2mm;
+    border: solid white 1px;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+  }
+  .response {
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    color: #ffffff;
+    font-weight: 300;
+  }
+  .responseYes:hover,
+  .responseNo:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1.5);
+    filter: brightness(110%);
+  }
+
+  .successMessageH1 {
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    color: rgb(174, 234, 89);
+    font-weight: 300;
+    font-size: 36pt;
+  }
+  .successMessageP {
+    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    color: rgb(174, 234, 89);
+    font-weight: 300;
+    font-size: 18pt;
+    margin-top: -25px;
   }
 }

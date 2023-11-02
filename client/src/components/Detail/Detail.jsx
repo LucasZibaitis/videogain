@@ -1,12 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { setIsLoading } from "../../redux/actions";
 import axios from "axios";
 import styles from "./Detail.module.css";
 
-export default function Detail() {
-  const uuidv4Pattern =
-    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+export default function Detail(props) {
+  const { fetchVideogames } = props;
   const { id } = useParams();
   const [videogame, setVideogame] = useState({
     id: id,
@@ -19,6 +20,11 @@ export default function Detail() {
     platforms: [],
   });
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const uuidv4Pattern =
+    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
 
   useEffect(() => {
     async function fetchVideogame() {
@@ -89,10 +95,13 @@ export default function Detail() {
 
   async function deleteVideogame() {
     try {
+      setDeleteSuccess(true);
       await axios.delete(
         `https://pi-videogames-back-a5zj.onrender.com/videogames/videogame/${id}`
       );
-      window.alert("Videogame deleted");
+      dispatch(setIsLoading(true));
+      await fetchVideogames();
+      navigate("/home");
     } catch (error) {
       window.alert("Videogame could not be deleted");
     }
@@ -100,7 +109,16 @@ export default function Detail() {
 
   return (
     <div className={styles.pageContainer}>
-      {deleteConfirmation ? (
+      {deleteSuccess ? (
+        <div className={styles.deleteContainer}>
+          <h1 className={styles.successMessageH1}>
+            Videogame deleted successfully
+          </h1>
+          <p className={styles.successMessageP}>
+            you will be redirected to the home in a few seconds...
+          </p>
+        </div>
+      ) : deleteConfirmation ? (
         <div className={styles.deleteContainer}>
           <h1 className={styles.question}>
             Are you sure you want to delete this videogame?
