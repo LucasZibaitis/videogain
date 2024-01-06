@@ -109,7 +109,7 @@
 
   .cardName {
     color: #ffffff;
-    font-family: "HelveticaNeue-Light", "HelveticaNeue Light", "HelveticaNeue";
+    font-family: "HelveticaNeue", sans-serif;
     font-size: 18pt;
     line-height: 1.2;
   }

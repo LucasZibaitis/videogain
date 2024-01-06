@@ -1,55 +1,55 @@
-  .navBarImg {
-    max-width: 92%;
-    position: relative;
-    z-index: 1;
-    margin-top: 30px;
-  }
+.navBarImg {
+  max-width: 92%;
+  position: relative;
+  z-index: 1;
+  margin-top: 30px;
+}
 
-  .navContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 48px;
-    left: 395px;
-    right: 0;
-    z-index: 2;
-  }
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 48px;
+  left: 395px;
+  right: 0;
+  z-index: 2;
+}
 
-  .navBarButtonHome,
-  .navBarButtonForm,
-  .navBarButtonExit {
-    background: transparent;
-    margin-right: 60px;
-  }
+.navBarButtonHome,
+.navBarButtonForm,
+.navBarButtonExit {
+  background: transparent;
+  margin-right: 60px;
+}
 
-  .navBarButton {
-    color: white;
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 25pt;
-    font-weight: 300;
-    transition: color 0.3s;
-  }
+.navBarButton {
+  color: white;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 25pt;
+  font-weight: 300;
+  transition: color 0.3s;
+}
 
-  .navBarButton:hover {
-    color: rgb(60, 73, 153);
-    cursor: pointer;
-  }
+.navBarButton:hover {
+  color: rgb(60, 73, 153);
+  cursor: pointer;
+}
 
-  .navBarButtonActive {
-    color: rgb(60, 73, 153);
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 25pt;
-    font-weight: 300;
-    transition: color 0.3s;
-  }
+.navBarButtonActive {
+  color: rgb(60, 73, 153);
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 25pt;
+  font-weight: 300;
+  transition: color 0.3s;
+}
 
-  a,
-  .navBarButtonHome,
-  .navBarButtonForm,
-  .navBarButtonExit {
-    text-decoration: none;
-  }
+a,
+.navBarButtonHome,
+.navBarButtonForm,
+.navBarButtonExit {
+  text-decoration: none;
+}
 
 @media screen and (min-width: 1920px) and (max-width: 2000px) {
   .navBarImg {
@@ -63,25 +63,27 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 50px;
     left: 395px;
     right: 0;
     z-index: 2;
+    bottom: 760px;
   }
   .navBarButton {
     color: rgb(255, 255, 255);
-    font-family: "HelveticaNeue-Thin", "HelveticaNeue Thin", "HelveticaNeue";
+    font-family: "HelveticaNeue";
     font-size: 32pt;
     letter-spacing: 1px;
     transition: color 0.3s;
+    font-weight: thin;
   }
 
   .navBarButtonActive {
     color: rgb(60, 73, 153);
-    font-family: "HelveticaNeue-Thin", "HelveticaNeue Thin", "HelveticaNeue";
+    font-family: "HelveticaNeue";
     font-size: 32pt;
     letter-spacing: 1px;
     transition: color 0.3s;
+    font-weight: thin;
   }
 
   .navBarButton:hover {
