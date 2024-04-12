@@ -6,7 +6,7 @@ const BASE_URL = "https://api.rawg.io/api/games";
 
 const getVideogames = async (req, res) => {
   try {
-    const dbVideogames = await Videogame.findAll({ include: Genre });
+    // const dbVideogames = await Videogame.findAll({ include: Genre });
 
     let allResults = [];
     let currentPage = 1;
@@ -42,7 +42,7 @@ const getVideogames = async (req, res) => {
       currentPage++;
     }
 
-    const combinedGames = [...dbVideogames, ...allResults];
+    const combinedGames = [...allResults];
 
     return res.status(200).json(combinedGames);
   } catch (error) {
