@@ -24,7 +24,7 @@
 }
 
 .navBarButton {
-  color: white;
+  color: #ffffff;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 25pt;
   font-weight: 300;
@@ -32,7 +32,7 @@
 }
 
 .navBarButton:hover {
-  color: rgb(60, 73, 153);
+  color: #3c4999;
   cursor: pointer;
 }
 

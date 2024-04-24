@@ -10,7 +10,6 @@ import {
   setIsLoading,
 } from "../../redux/actions";
 import Arrow from "./Arrow.png";
-import styles from "./Cards.module.css";
 
 export default function Cards(props) {
   const { fetchVideogames } = props;
@@ -114,93 +113,100 @@ export default function Cards(props) {
   };
 
   return (
-    <div>
-      <div>
-        <input
-          type="text"
-          onChange={handleChange}
-          value={name}
-          className={styles.searchInput}
-        />
-        <div className={styles.searchButtonFrame} onClick={handleSearch}>
-          <p>search</p>
-        </div>
-      </div>
-      <div className={styles.filterContainer}>
-        <div>
-          <select
-            onChange={handleOrderByName}
-            value={nameOrder}
-            className={styles.selectorButton}
+    <div class="h-full flex flex-col gap-8 text-white py-4 items-center">
+      <div class="flex justify-around h-9 w-5/6">
+        <div class="flex h-9 w-1/3 relative">
+          <input
+            type="text"
+            onChange={handleChange}
+            value={name}
+            class="text-[#3c4999] text-2xl rounded-lg w-3/5 px-2 outline-none"
+          />
+          <button
+            onClick={handleSearch}
+            class="text-2xl absolute right-12 border-l-0 rounded-tl-none rounded-bl-none border-white rounded-lg border-2 flex items-center justify-center w-1/3 pl-4 hover:text-[#3c4999] transition-all duration-200"
           >
-            <option value="none">sort by name</option>
-            <option value="A">sort by name: A to Z</option>
-            <option value="Z">sort by name: Z to A</option>
-          </select>
+            search
+          </button>
         </div>
-        <div>
-          <select
-            onChange={handleOrderByRating}
-            value={ratingOrder}
-            className={styles.selectorButton}
-          >
-            <option value="none">sort by rating</option>
-            <option value="A">sort by rating: Ascending</option>
-            <option value="D">sort by rating: Descending</option>
-          </select>
+        <div class="flex  gap-8">
+          <img
+            src={Arrow}
+            onClick={handlePreviousPage}
+            class="hover:scale-110 transition-all duration-200 cursor-pointer"
+          />
+          <p class="text-2xl"> page {currentPage} </p>
+          <img
+            src={Arrow}
+            onClick={handleNextPage}
+            class="rotate-180 hover:scale-110 transition-all duration-200 cursor-pointer"
+          />
         </div>
-        <div>
-          <select
-            onChange={handleFilterByGenre}
-            value={genreFilter}
-            className={styles.selectorButton}
-          >
-            <option value="all">filter by genre</option>
-            {genresFilter}
-            <option value="Genreless">Genreless</option>
-          </select>
-        </div>
-        <div>
-          <select
-            onChange={handleFilterBySource}
-            value={sourceFilter}
-            className={styles.selectorButton}
-          >
-            <option value="all">filter by source</option>
-            <option value="api">API Videogames</option>
-            <option value="db">Database Videogames</option>
-          </select>
-        </div>
+        <button
+          onClick={handleRefresh}
+          class=" text-2xl flex border-2 border-white rounded-lg w-40 items-center justify-center hover:text-[#3c4999] transition-all duration-200"
+        >
+          refresh
+        </button>
       </div>
-      <div className={styles.refreshButtonFrame} onClick={handleRefresh}>
-        <p>refresh</p>
+
+      <div class="flex justify-around gap-8 w-5/6">
+        <select
+          onChange={handleOrderByName}
+          value={nameOrder}
+          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999]"
+        >
+          <option value="none">sort by name</option>
+          <option value="A">sort by name: A to Z</option>
+          <option value="Z">sort by name: Z to A</option>
+        </select>
+
+        <select
+          onChange={handleOrderByRating}
+          value={ratingOrder}
+          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999]"
+        >
+          <option value="none">sort by rating</option>
+          <option value="A">sort by rating: Ascending</option>
+          <option value="D">sort by rating: Descending</option>
+        </select>
+
+        <select
+          onChange={handleFilterByGenre}
+          value={genreFilter}
+          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999]"
+        >
+          <option value="all">filter by genre</option>
+          {genresFilter}
+          <option value="Genreless">Genreless</option>
+        </select>
+
+        <select
+          onChange={handleFilterBySource}
+          value={sourceFilter}
+          class="bg-transparent border-white border-2 rounded-lg text-2xl w-2/4 text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999]  h-9"
+        >
+          <option value="all">filter by source</option>
+          <option value="api">API Videogames</option>
+          <option value="db">Database Videogames</option>
+        </select>
       </div>
-      <div className={styles.paginationContainer}>
-        <img
-          src={Arrow}
-          onClick={handlePreviousPage}
-          className={styles.arrowLeft}
-        />
-        <p className={styles.paginationPage}> page {currentPage} </p>
-        <img
-          src={Arrow}
-          onClick={handleNextPage}
-          className={styles.arrowRight}
-        />
-      </div>
-      <div>
+
+      <div class="h-full ">
         {isLoading ? (
-          <div className={styles.loadingDiv}>
-            <h1 className={styles.loadingH1}>loading cards...</h1>
+          <div class="mt-10 h-1/2 flex items-center">
+            <h1 class="text-4xl font-light">loading cards...</h1>
           </div>
         ) : (
-          <div className={styles.cardList}>
+          <div class="h-full">
             {filteredVideogames.length === 0 ? (
-              <div className={styles.errorDiv}>
-                <h1 className={styles.errorH1}>no videogames were found</h1>
+              <div class="mt-10 h-1/2 flex items-center">
+                <h1 class="text-4xl font-light">no videogames were found</h1>
               </div>
             ) : (
-              videogamesList
+              <div class="mt-10 grid grid-cols-5 gap-x-20 gap-y-6 pb-10">
+                {videogamesList}
+              </div>
             )}
           </div>
         )}

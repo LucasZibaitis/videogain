@@ -9,13 +9,16 @@ export const SET_ALL_GENRES = "SET_ALL_GENRES";
 export const SET_ALL_PLATFORMS = "SET_ALL_PLATFORMS";
 export const SET_IS_LOADING = "SET_IS_LOADING";
 
+const URL = process.env.REACT_APP_LOCAL_ENDPOINT;
+// const URL = process.env.REACT_APP_DEPLOYED_ENDPOINT;
+
 export const setAllVideogames = (videogames) => ({
   type: SET_ALL_VIDEOGAMES,
   payload: videogames,
 });
 
 export const setVideogamesByName = (name) => {
-  const endpoint = `https://pi-videogames-back-a5zj.onrender.com/videogames/name?name=${name}`;
+  const endpoint = `${URL}/videogames/name?name=${name}`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);

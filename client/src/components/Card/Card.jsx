@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Card.module.css";
 
 export default function Card(props) {
   const genreName =
@@ -9,18 +8,16 @@ export default function Card(props) {
       : "Genreless";
 
   return (
-    <div>
-      <Link to={`/detail/${props.id}`} className={styles.cardLink}>
-        <div className={styles.card}>
-          <div className={styles.cardNameContainer}>
-            <h1 className={styles.cardName}>{props.name}</h1>
+    <div class=" border-4 border-white rounded-lg flex flex-col h-96 overflow-hidden hover:shadow-2xl transition-all duration-200">
+      <Link to={`/detail/${props.id}`}>
+        <div class="h-full">
+          <div class="bg-[#3c4999] min-h-28 px-2 text-white text-3xl pl-2 py-2 flex items-start justify-start">
+            <h1>{props.name}</h1>
           </div>
-          <div className={styles.cardGenreContainer}>
-            <h2 className={styles.cardGenre}>{genreName}</h2>
+          <div class="relative flex items-center bg-[#808080] h-10 lowercase italic text-2xl font-light pl-2 rounded-b-xl border-4 -ml-1 -mr-1 border-white">
+            <h2>{genreName}</h2>
           </div>
-          <div className={styles.cardImageContainer}>
-            <img src={props.image} className={styles.cardImage} />
-          </div>
+          <img src={props.image} class="h-full w-full object-cover -mt-1" />
         </div>
       </Link>
     </div>

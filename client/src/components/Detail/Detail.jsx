@@ -6,6 +6,9 @@ import { setIsLoading } from "../../redux/actions";
 import axios from "axios";
 import styles from "./Detail.module.css";
 
+const URL = process.env.REACT_APP_LOCAL_ENDPOINT;
+// const URL = process.env.REACT_APP_DEPLOYED_ENDPOINT;
+
 export default function Detail(props) {
   const { fetchVideogames } = props;
   const { id } = useParams();
@@ -29,9 +32,7 @@ export default function Detail(props) {
   useEffect(() => {
     async function fetchVideogame() {
       try {
-        const response = await axios.get(
-          `https://pi-videogames-back-a5zj.onrender.com/videogames/videogame/${id}`
-        );
+        const response = await axios.get(`${URL}/videogames/videogame/${id}`);
         const data = response.data;
         const {
           name,
@@ -96,9 +97,7 @@ export default function Detail(props) {
   async function deleteVideogame() {
     try {
       setDeleteSuccess(true);
-      await axios.delete(
-        `https://pi-videogames-back-a5zj.onrender.com/videogames/videogame/${id}`
-      );
+      await axios.delete(`${URL}/videogames/videogame/${id}`);
       dispatch(setIsLoading(true));
       await fetchVideogames();
       navigate("/home");

@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Nav from "./components/Nav/Nav";
@@ -14,6 +13,10 @@ import {
   setAllVideogames,
   setIsLoading,
 } from "./redux/actions";
+import "./index.css";
+
+const URL = process.env.REACT_APP_LOCAL_ENDPOINT;
+// const URL = process.env.REACT_APP_DEPLOYED_ENDPOINT;
 
 function App() {
   const location = useLocation();
@@ -21,9 +24,7 @@ function App() {
 
   const fetchVideogames = async () => {
     try {
-      const { data } = await axios.get(
-        `https://pi-videogames-back-a5zj.onrender.com/videogames`
-      );
+      const { data } = await axios.get(`${URL}/videogames`);
       dispatch(setAllVideogames(data));
       dispatch(setIsLoading(false));
     } catch (error) {}
@@ -31,9 +32,7 @@ function App() {
 
   const fetchGenres = async () => {
     try {
-      const response = await axios.get(
-        "https://pi-videogames-back-a5zj.onrender.com/videogames/genres"
-      );
+      const response = await axios.get(`${URL}/videogames/genres`);
       dispatch(setAllGenres(response.data));
     } catch (error) {
       console.error(error);
@@ -42,9 +41,7 @@ function App() {
 
   const fetchPlatforms = async () => {
     try {
-      const response = await axios.get(
-        "https://pi-videogames-back-a5zj.onrender.com/videogames/platforms"
-      );
+      const response = await axios.get(`${URL}/videogames/platforms`);
       dispatch(setAllPlatforms(response.data));
     } catch (error) {
       console.error(error);
@@ -58,7 +55,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <main class="h-screen mx-36 mt-10">
       {location.pathname !== "/" ? <Nav /> : null}
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -66,16 +63,16 @@ function App() {
           path="/home"
           element={<Cards fetchVideogames={fetchVideogames} />}
         />
-        <Route
+        {/* <Route
           path="/form"
           element={<Form fetchVideogames={fetchVideogames} />}
-        />
+        /> */}
         <Route
           path="/detail/:id"
           element={<Detail fetchVideogames={fetchVideogames} />}
         />
       </Routes>
-    </div>
+    </main>
   );
 }
 

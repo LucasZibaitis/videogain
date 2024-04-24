@@ -6,6 +6,9 @@ import { validate, validatePlatforms } from "./validation";
 import { setIsLoading } from "../../redux/actions";
 import styles from "./Form.module.css";
 
+const URL = process.env.REACT_APP_LOCAL_ENDPOINT;
+// const URL = process.env.REACT_APP_DEPLOYED_ENDPOINT;
+
 export default function Form(props) {
   const { fetchVideogames } = props;
   const genres = useSelector((state) => state.allGenres);
@@ -85,18 +88,15 @@ export default function Form(props) {
     }
     try {
       setFormSuccess(true);
-      await axios.post(
-        "https://pi-videogames-back-a5zj.onrender.com/videogames",
-        {
-          name: formData.name,
-          background_image: formData.image,
-          description: formData.description,
-          platforms: selectedPlatforms,
-          released: formData.released,
-          rating: formData.rating,
-          genres: selectedGenres,
-        }
-      );
+      await axios.post(`${URL}/videogames`, {
+        name: formData.name,
+        background_image: formData.image,
+        description: formData.description,
+        platforms: selectedPlatforms,
+        released: formData.released,
+        rating: formData.rating,
+        genres: selectedGenres,
+      });
       setFormData({
         name: "",
         image: "",
