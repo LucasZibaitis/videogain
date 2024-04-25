@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { setIsLoading } from "../../redux/actions";
 import axios from "axios";
-import styles from "./Detail.module.css";
 
 const URL = process.env.REACT_APP_LOCAL_ENDPOINT;
 // const URL = process.env.REACT_APP_DEPLOYED_ENDPOINT;
@@ -63,7 +62,7 @@ export default function Detail(props) {
 
   function renderGenres() {
     return (
-      <ul className={styles.othersInfo}>
+      <ul class="font-light text-lg list-disc list-inside">
         {videogame.genres.map((genre, index) => (
           <li key={index}>{genre.name}</li>
         ))}
@@ -73,7 +72,7 @@ export default function Detail(props) {
 
   function renderPlatforms() {
     return (
-      <ul className={styles.othersInfo}>
+      <ul class="font-light text-lg list-disc list-inside">
         {videogame.platforms.map((platform) => (
           <li>{platform.platform.name}</li>
         ))}
@@ -107,99 +106,92 @@ export default function Detail(props) {
   }
 
   return (
-    <div className={styles.pageContainer}>
+    <div class="flex items-center justify-center">
       {deleteSuccess ? (
-        <div className={styles.deleteContainer}>
-          <h1 className={styles.successMessageH1}>
-            Videogame deleted successfully
-          </h1>
-          <p className={styles.successMessageP}>
-            you will be redirected to the home in a few seconds...
-          </p>
+        <div>
+          <h1>Videogame deleted successfully</h1>
+          <p>you will be redirected to the home in a few seconds...</p>
         </div>
       ) : deleteConfirmation ? (
-        <div className={styles.deleteContainer}>
-          <h1 className={styles.question}>
-            Are you sure you want to delete this videogame?
-          </h1>
-          <div className={styles.responseContainer}>
+        <div>
+          <h1>Are you sure you want to delete this videogame?</h1>
+          <div>
             <div
-              className={styles.responseYes}
               onClick={() => {
                 deleteVideogame();
               }}
             >
-              <h2 className={styles.response}>Yes</h2>
+              <h2>Yes</h2>
             </div>
             <div
-              className={styles.responseNo}
               onClick={() => {
                 setDeleteConfirmation(false);
               }}
             >
-              <h2 className={styles.response}>No</h2>
+              <h2>No</h2>
             </div>
           </div>
         </div>
       ) : videogame.name ? (
-        <div className={styles.detailContainer}>
-          <div>
-            <div className={styles.card}>
-              <div className={styles.cardImageContainer}>
-                <img
-                  src={videogame.background_image}
-                  className={styles.cardImage}
-                  alt=""
-                />
-              </div>
+        <div class="w-4/5 bg-[#3c4999] border-4 rounded-lg flex text-white gap-14 px-14 py-8">
+          <div class="flex flex-col gap-4">
+            <div class="h-3/5">
+              <img
+                src={videogame.background_image}
+                alt=""
+                class="border-4 border-white rounded-lg h-full object-cover"
+              />
             </div>
-            <div className={styles.idContainer}>
-              <h2>ID: {videogame.id}</h2>
+            <div>
+              <h2 class="text-2xl">ID: {videogame.id}</h2>
               {uuidv4Pattern.test(videogame.id) ? (
                 <div
-                  className={styles.deleteDiv}
                   onClick={() => {
                     setDeleteConfirmation(true);
                   }}
                 >
-                  <h2 className={styles.deleteH2}>Delete from database</h2>
+                  <h2>Delete from database</h2>
                 </div>
               ) : null}
             </div>
           </div>
-          <div className={styles.infoContainer}>
-            <h1 className={styles.name}>{videogame.name}</h1>
-            <h2 className={styles.descriptionTitle}>Description</h2>
-            <div
-              className={styles.description}
-              dangerouslySetInnerHTML={createMarkup(videogame.description)}
-            />
-            <div className={styles.others}>
-              <div className={styles.othersGroup}>
-                <h2 className={styles.othersTitle}>Release Date</h2>
-                <div className={styles.othersInfo}>
+          <div class="flex flex-col gap-4">
+            <h1 class="text-4xl">{videogame.name}</h1>
+            <div class="flex flex-col gap-2">
+              <h2 class="text-3xl font-light">Description</h2>
+
+              <div
+                class="overflow-auto max-h-56 text-xl font-light border-2 pl-2 rounded-lg"
+                dangerouslySetInnerHTML={createMarkup(videogame.description)}
+              />
+            </div>
+
+            <div class="flex justify-between">
+              <div>
+                <h2 class="text-3xl font-light">Release Date</h2>
+                <div class="font-light text-lg">
                   {formatDate(videogame.released)}
                 </div>
               </div>
-              <div className={styles.othersGroup}>
-                <h2 className={styles.othersTitle}>Rating</h2>
-                <div className={styles.othersInfo}>{videogame.rating}</div>
+              <div>
+                <h2 class="text-3xl font-light">Rating</h2>
+                <div class="font-light text-lg">{videogame.rating}</div>
               </div>
-              <div className={styles.othersGroup}>
-                <h2 className={styles.othersTitle}>Genres</h2>
+              <div>
+                <h2 class="text-3xl font-light text-lg">Genres</h2>
                 {renderGenres()}
               </div>
-              <div className={styles.othersGroup}>
-                <h2 className={styles.othersTitle}>Platforms</h2>
+              <div class="flex flex-col items-start">
+                <h2 class="text-3xl font-light">Platforms</h2>
                 {renderPlatforms()}
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className={styles.detailContainer}>
-          <div className={styles.loadingDiv}>
-            <h1 className={styles.loadingH1}>loading videogame...</h1>
+        <div>
+          <div>
+            <h1>loading videogame...</h1>
           </div>
         </div>
       )}
