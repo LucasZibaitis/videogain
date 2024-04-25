@@ -154,7 +154,7 @@ export default function Cards(props) {
         <select
           onChange={handleOrderByName}
           value={nameOrder}
-          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999]"
+          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999] outline-none"
         >
           <option value="none">sort by name</option>
           <option value="A">sort by name: A to Z</option>
@@ -164,7 +164,7 @@ export default function Cards(props) {
         <select
           onChange={handleOrderByRating}
           value={ratingOrder}
-          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999]"
+          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999] outline-none"
         >
           <option value="none">sort by rating</option>
           <option value="A">sort by rating: Ascending</option>
@@ -174,7 +174,7 @@ export default function Cards(props) {
         <select
           onChange={handleFilterByGenre}
           value={genreFilter}
-          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999]"
+          class="bg-transparent border-2 rounded-lg text-2xl w-2/4  text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999] outline-none"
         >
           <option value="all">filter by genre</option>
           {genresFilter}
@@ -184,7 +184,7 @@ export default function Cards(props) {
         <select
           onChange={handleFilterBySource}
           value={sourceFilter}
-          class="bg-transparent border-white border-2 rounded-lg text-2xl w-2/4 text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999]  h-9"
+          class="bg-transparent border-white border-2 rounded-lg text-2xl w-2/4 text-center cursor-pointer hover:bg-[#3c4999] transition-all duration-200 hover:border-2 hover:border-[#3c4999] outline-none h-9"
         >
           <option value="all">filter by source</option>
           <option value="api">API Videogames</option>

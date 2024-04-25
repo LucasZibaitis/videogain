@@ -72,7 +72,7 @@ export default function Detail(props) {
 
   function renderPlatforms() {
     return (
-      <ul class="font-light text-lg list-disc list-inside">
+      <ul class="font-light text-lg list-disc list-inside overflow-auto max-h-36 pr-4">
         {videogame.platforms.map((platform) => (
           <li>{platform.platform.name}</li>
         ))}
@@ -108,60 +108,64 @@ export default function Detail(props) {
   return (
     <div class="flex items-center justify-center">
       {deleteSuccess ? (
-        <div>
-          <h1>Videogame deleted successfully</h1>
-          <p>you will be redirected to the home in a few seconds...</p>
+        <div class="flex flex-col items-center justify-center bg-[#3c4999] w-3/5 h-64 border-4 rounded-lg text-white gap-8 px-14 py-8">
+          <h1 class="text-4xl font-light">Videogame deleted successfully</h1>
+          <p class="text-2xl font-thin">
+            you will be redirected to the home in a few seconds...
+          </p>
         </div>
       ) : deleteConfirmation ? (
-        <div>
-          <h1>Are you sure you want to delete this videogame?</h1>
-          <div>
-            <div
+        <div class="flex flex-col items-center justify-center bg-[#3c4999] w-3/5 h-64 border-4 rounded-lg text-white gap-14 px-14 py-8">
+          <h1 class="text-4xl font-light">
+            Are you sure you want to delete this videogame?
+          </h1>
+          <div class="flex gap-24">
+            <button
               onClick={() => {
                 deleteVideogame();
               }}
+              class="hover:scale-110 transition-all duration-300 border-2 rounded-lg px-10 hover:bg-[#cc7a1d]"
             >
-              <h2>Yes</h2>
-            </div>
-            <div
+              <h2 class="text-4xl font-light">Yes</h2>
+            </button>
+            <button
               onClick={() => {
                 setDeleteConfirmation(false);
               }}
+              class="hover:scale-110 transition-all duration-300 border-2 rounded-lg px-10 hover:bg-[#cc7a1d]"
             >
-              <h2>No</h2>
-            </div>
+              <h2 class="text-4xl font-light">No</h2>
+            </button>
           </div>
         </div>
       ) : videogame.name ? (
-        <div class="w-4/5 bg-[#3c4999] border-4 rounded-lg flex text-white gap-14 px-14 py-8">
-          <div class="flex flex-col gap-4">
-            <div class="h-3/5">
+        <div class="bg-[#3c4999] border-4 rounded-lg flex text-white gap-14 px-14 py-8 w-4/5">
+          <div class="flex flex-col gap-4  items-center">
+            <div class="h-4/5">
               <img
                 src={videogame.background_image}
                 alt=""
-                class="border-4 border-white rounded-lg h-full object-cover"
+                class="border-4 border-white rounded-lg h-full max-w-80 object-cover"
               />
             </div>
-            <div>
-              <h2 class="text-2xl">ID: {videogame.id}</h2>
-              {uuidv4Pattern.test(videogame.id) ? (
-                <div
-                  onClick={() => {
-                    setDeleteConfirmation(true);
-                  }}
-                >
-                  <h2>Delete from database</h2>
-                </div>
-              ) : null}
-            </div>
+            {uuidv4Pattern.test(videogame.id) ? (
+              <button
+                onClick={() => {
+                  setDeleteConfirmation(true);
+                }}
+                class="bg-[#ff1818] border-2 border-white rounded-lg px-8 h-8 hover:scale-110 transition-all duration-300"
+              >
+                Delete from database
+              </button>
+            ) : null}
           </div>
-          <div class="flex flex-col gap-4">
-            <h1 class="text-4xl">{videogame.name}</h1>
+          <div class="flex flex-col gap-4 w-full">
+            <h1 class="text-5xl">{videogame.name}</h1>
             <div class="flex flex-col gap-2">
               <h2 class="text-3xl font-light">Description</h2>
 
               <div
-                class="overflow-auto max-h-56 text-xl font-light border-2 pl-2 rounded-lg"
+                class="overflow-auto max-h-64 text-xl font-light border-2 pl-2 rounded-lg"
                 dangerouslySetInnerHTML={createMarkup(videogame.description)}
               />
             </div>
@@ -178,7 +182,7 @@ export default function Detail(props) {
                 <div class="font-light text-lg">{videogame.rating}</div>
               </div>
               <div>
-                <h2 class="text-3xl font-light text-lg">Genres</h2>
+                <h2 class="text-3xl font-light">Genres</h2>
                 {renderGenres()}
               </div>
               <div class="flex flex-col items-start">
@@ -189,10 +193,8 @@ export default function Detail(props) {
           </div>
         </div>
       ) : (
-        <div>
-          <div>
-            <h1>loading videogame...</h1>
-          </div>
+        <div class="flex items-center justify-center bg-[#3c4999] w-1/2 h-64 border-4 rounded-lg text-white gap-14 px-14 py-8">
+          <h1 class="text-4xl font-light">loading videogame...</h1>
         </div>
       )}
     </div>

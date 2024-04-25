@@ -17,7 +17,7 @@ export default function LandingPage(props) {
   };
 
   return (
-    <div>
+    <div class="">
       <Link to="/home">
         <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <MediaQuery maxWidth={600}>

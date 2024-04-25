@@ -6,46 +6,41 @@ const BASE_URL = "https://api.rawg.io/api/games";
 
 const getVideogames = async (req, res) => {
   try {
-    // const dbVideogames = await Videogame.findAll({ include: Genre });
+    // Obtén los videojuegos de la base de datos local
+    const dbVideogames = await Videogame.findAll({ include: Genre });
 
-    let allResults = [];
-    let currentPage = 1;
-    const pageSize = 100;
+    // Realiza una sola solicitud a la API
+    const { data } = await axios.get(`${BASE_URL}?key=${API_KEY}`);
 
-    while (allResults.length < pageSize) {
-      const { data } = await axios.get(
-        `${BASE_URL}?key=${API_KEY}&page=${currentPage}`
-      );
-      const results = data.results.map((result) => {
-        const {
-          id,
-          name,
-          background_image,
-          rating,
-          genres,
-          platforms,
-          description,
-        } = result;
-        return {
-          id,
-          name,
-          background_image,
-          rating,
-          genres,
-          platforms,
-          description,
-        };
-      });
+    // Procesa los resultados de la API
+    const apiVideogames = data.results.map((result) => {
+      const {
+        id,
+        name,
+        background_image,
+        rating,
+        genres,
+        platforms,
+        description,
+      } = result;
+      return {
+        id,
+        name,
+        background_image,
+        rating,
+        genres,
+        platforms,
+        description,
+      };
+    });
 
-      allResults = [...allResults, ...results];
+    // Combina los resultados de la base de datos y la API
+    const combinedGames = [...dbVideogames, ...apiVideogames];
 
-      currentPage++;
-    }
-
-    const combinedGames = [...allResults];
-
+    // Devuelve la respuesta con un código de estado 200
     return res.status(200).json(combinedGames);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: error.message });
   }
 };

@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { validate, validatePlatforms } from "./validation";
 import { setIsLoading } from "../../redux/actions";
-import styles from "./Form.module.css";
 
 const URL = process.env.REACT_APP_LOCAL_ENDPOINT;
 // const URL = process.env.REACT_APP_DEPLOYED_ENDPOINT;
@@ -112,7 +111,7 @@ export default function Form(props) {
 
   const selectGenres = genres.map((genre) => (
     <React.Fragment key={genre.id}>
-      <div className={styles.checkboxOptions}>
+      <div>
         <input
           type="checkbox"
           id={genre.name}
@@ -120,7 +119,7 @@ export default function Form(props) {
           value={genre.id}
           onChange={handleChangeGenre}
         />
-        <label htmlFor={genre.name} className={styles.checkboxLabels}>
+        <label class="pl-2 font-thin" htmlFor={genre.name}>
           {genre.name}
         </label>
       </div>
@@ -129,7 +128,7 @@ export default function Form(props) {
 
   const selectPlatforms = platforms.map((platform) => (
     <React.Fragment key={platform}>
-      <div className={styles.checkboxOptions}>
+      <div>
         <input
           type="checkbox"
           id={platform}
@@ -137,7 +136,7 @@ export default function Form(props) {
           value={platform}
           onChange={handleChangePlatform}
         />
-        <label htmlFor={platform} className={styles.checkboxLabels}>
+        <label class="pl-2 font-thin" htmlFor={platform}>
           {platform}
         </label>
       </div>
@@ -145,115 +144,122 @@ export default function Form(props) {
   ));
 
   return (
-    <div className={styles.pageContainer}>
+    <div class="flex justify-center">
       {formSuccess ? (
-        <div className={styles.successContainer}>
-          <h1 className={styles.successMessageH1}>
-            Videogame created successfully
-          </h1>
-          <p className={styles.successMessageP}>
+        <div class="flex flex-col items-center justify-center bg-[#3c4999] w-3/5 h-64 border-4 rounded-lg text-white gap-8 px-14 py-8">
+          <h1 class="text-4xl font-light">Videogame created successfully</h1>
+          <p class="text-2xl font-thin">
             you will be redirected to the home in a few seconds...
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className={styles.formContainer}>
-          <div className={styles.leftColumnContainer}>
-            <div className={styles.leftContainer}>
-              <label>Name</label>
+        <form
+          onSubmit={handleSubmit}
+          class="flex items-start justify-center gap-24 bg-[#3c4999] w-4/5 rounded-lg border-4 border-white text-white py-8"
+        >
+          <div class="flex flex-col gap-12 w-1/2">
+            <div class="flex flex-col gap-2 w-full">
+              <label class="text-2xl">Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className={styles.leftInput}
                 placeholder="Enter the videogame name"
+                class="rounded-lg h-10 pl-2 text-[#3c4999] outline-none"
               ></input>
-              <p className={styles.danger}>
+              <p class="text-sm font-light">
                 {formSubmitted ? errors.name : ""}
               </p>
             </div>
-            <div className={styles.leftContainer}>
-              <label>Image</label>
+            <div class="flex flex-col gap-2">
+              <label class="text-2xl">Image</label>
               <input
                 type="text"
                 name="image"
                 value={formData.image}
                 onChange={handleChange}
                 placeholder="Enter the image URL of the videogame"
-                className={styles.leftInput}
+                class="rounded-lg h-10 pl-2 text-[#3c4999] outline-none"
               ></input>
-              <p className={styles.danger}>
+              <p class="text-sm font-light">
                 {formSubmitted ? errors.image : ""}
               </p>
             </div>
-            <div className={styles.leftContainerDescription}>
-              <label>Description</label>
+            <div class="flex flex-col gap-2">
+              <label class="text-2xl">Description</label>
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                className={styles.descriptionInput}
                 placeholder="Enter the description about the videogame"
+                class="rounded-lg h-56 px-2 pt-2 text-[#3c4999] outline-none"
               />
-              <p className={styles.danger}>
+              <p class="text-sm font-light">
                 {formSubmitted ? errors.description : ""}
               </p>
             </div>
           </div>
-          <div className={styles.rightColumnContainer}>
-            <div className={styles.checkboxContainer}>
-              <div className={styles.platformsContainer}>
-                <label>Platforms</label>
-                <div className={styles.checkboxLeftContainer}>
-                  <div className={styles.checkboxLeft}>{selectPlatforms}</div>
+          <div class="flex flex-col h-full gap-14">
+            <div class="flex gap-8 w-full h-full">
+              <div class="flex flex-col gap-2">
+                <label class="text-2xl">Platforms</label>
+
+                <div class="overflow-auto h-48 border-2 rounded-lg px-2">
+                  {selectPlatforms}
                 </div>
-                <p className={styles.danger}>
+
+                <p class="text-sm font-light">
                   {formSubmitted ? errors.platforms : ""}
                 </p>
               </div>
-              <div className={styles.platformsContainer}>
-                <div>
-                  <label className={styles.genresLabel}>Genres</label>
-                  <div className={styles.checkboxRightContainer}>
-                    <div className={styles.checkboxRight}>{selectGenres}</div>
+              <div>
+                <div class="flex flex-col gap-2">
+                  <label class="text-2xl">Genres</label>
+
+                  <div class="overflow-auto h-48 border-2 rounded-lg px-2">
+                    {selectGenres}
                   </div>
                 </div>
               </div>
             </div>
-            <div className={styles.rightBottomContainer}>
-              <div className={styles.rightBottomColumn}>
-                <div className={styles.leftContainer}>
-                  <label>Release Date</label>
+            <div class="flex justify-between h-full">
+              <div class="flex flex-col h-full justify-between w-full">
+                <div class="flex flex-col gap-2 w-3/5">
+                  <label class="text-2xl">Release Date</label>
                   <input
                     type="date"
                     name="released"
                     value={formData.released}
                     onChange={handleChange}
-                    className={styles.rightInput}
+                    class="rounded-lg h-10 px-2 text-[#3c4999] outline-none"
                   />
-                  <p className={styles.danger}>
+                  <p class="text-sm font-light">
                     {formSubmitted ? errors.released : ""}
                   </p>
                 </div>
-                <div className={styles.leftContainer}>
-                  <label>Rating</label>
-                  <input
-                    type="number"
-                    name="rating"
-                    value={formData.rating}
-                    onChange={handleChange}
-                    className={styles.rightInput}
-                    placeholder="Enter the videogame rating"
-                  />
-                  <p className={styles.danger}>
-                    {formSubmitted ? errors.rating : ""}
-                  </p>
+                <div class="flex items-end justify-between w-full">
+                  <div class="flex flex-col gap-2 w-3/5">
+                    <label class="text-2xl">Rating</label>
+                    <input
+                      type="number"
+                      name="rating"
+                      value={formData.rating}
+                      onChange={handleChange}
+                      placeholder="Enter the videogame rating"
+                      class="rounded-lg h-10 pl-2 text-[#3c4999] outline-none"
+                    />
+                    <p class="text-sm font-light">
+                      {formSubmitted ? errors.rating : ""}
+                    </p>
+                  </div>
+                  <button
+                    class="bg-[#65a30d] mb-2 h-10 w-28 rounded-lg border-2 border-white hover:scale-110 transition-all duration-300 text-2xl"
+                    type="submit"
+                  >
+                    Create
+                  </button>
                 </div>
-              </div>
-              <div className={styles.buttonContainer}>
-                <button type="submit" className={styles.button}>
-                  Create
-                </button>
               </div>
             </div>
           </div>

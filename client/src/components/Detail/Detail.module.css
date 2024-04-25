@@ -345,7 +345,7 @@
   .deleteDiv:hover {
     cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    border: solid rgb(255, 24, 24) 2px;
+    border: solid #ff1818 2px;
   }
 
   .deleteH2 {

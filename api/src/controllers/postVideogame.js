@@ -41,6 +41,7 @@ const postVideogame = async (req, res) => {
     console.log("Géneros asociados:", genresDBB);
     return res.status(200).send(newVideogame);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: error.message });
   }
 };

@@ -55,7 +55,7 @@ function App() {
   }, []);
 
   return (
-    <main class="h-screen mx-36 mt-10">
+    <main class="h-full mx-36 mt-10">
       {location.pathname !== "/" ? <Nav /> : null}
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -63,10 +63,10 @@ function App() {
           path="/home"
           element={<Cards fetchVideogames={fetchVideogames} />}
         />
-        {/* <Route
+        <Route
           path="/form"
           element={<Form fetchVideogames={fetchVideogames} />}
-        /> */}
+        />
         <Route
           path="/detail/:id"
           element={<Detail fetchVideogames={fetchVideogames} />}

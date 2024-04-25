@@ -13,7 +13,7 @@
 }
 
 .formContainer {
-  background-color: rgb(60, 73, 153);
+  background-color: #3c4999;
   width: 1000px;
   height: 600px;
   border-radius: 3mm;
@@ -173,7 +173,7 @@
   margin-left: 70px;
   width: 100px;
   height: 40px;
-  background-color: rgb(101, 150, 27);
+  background-color: #65961b;
   border-radius: 2mm;
   border: solid white 1px;
   color: white;
