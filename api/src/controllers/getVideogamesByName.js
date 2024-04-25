@@ -10,17 +10,18 @@ const getVideogamesByName = async (req, res) => {
     const name = req.query.name;
     const apiResponse = await axios.get(`${URL}${name}&key=${API_KEY}`);
 
-    // const dbResponse = Videogame.findAll({
-    //   where: {
-    //     name: {
-    //       [Op.iLike]: `%${name}%`,
-    //     },
-    //   },
-    //   include: Genre,
-    // });
+    const dbResponse = Videogame.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+      include: Genre,
+    });
 
-    const [apiVideogames] = await Promise.all([
-      apiResponse
+    const [apiVideogames, dbVideogames] = await Promise.all([
+      apiResponse,
+      dbResponse,
     ]);
 
     const apiVideogamesTransformed = apiVideogames.data.results.map(
@@ -35,7 +36,7 @@ const getVideogamesByName = async (req, res) => {
       })
     );
 
-    const combinedVideogames = [...apiVideogamesTransformed];
+    const combinedVideogames = [...dbVideogames, ...apiVideogamesTransformed];
 
     const resultVideogames = combinedVideogames.slice(0, 15);
 
